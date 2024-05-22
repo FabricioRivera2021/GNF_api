@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\NumerosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,5 @@ Route::post("/createNumber", [NumerosController::class, "createNumber"]);
 Route::post("/createNumberFromSW", [NumerosController::class, "createNumberFromSW"]);
 
 Route::get("/allNumbers", [NumerosController::class, "allNumbers"]);
+
+Route::get("/allEstados", [EstadosController::class, "allEstados"]);
