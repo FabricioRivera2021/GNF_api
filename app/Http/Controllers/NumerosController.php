@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customers;
+use App\Models\Estados;
 use App\Models\Filas;
 use App\Models\Numeros;
 use Illuminate\Http\Request;
@@ -10,7 +11,27 @@ use Illuminate\Support\Facades\Auth;
 
 class NumerosController extends Controller
 {
-    public function allNumbers(){
+    public function allNumbers( $id = null ){
+
+        if($id && $id != 1){
+            $estado = Estados::findOrFail($id);
+            $numeros = Numeros::with('filas', 'estados', 'customers')
+                ->where('estados_id', $estado->id)
+                ->get()
+                ->map(function($numero) {
+                    return [
+                        'numero' => $numero->numero,
+                        'fila_prefix' => $numero->filas->prefix,
+                        'fila' => $numero->filas->filas,
+                        'estado' => $numero->estados->estados,
+                        'estados_id' => $numero->estados->id,
+                        'nombre' => $numero->customers,
+                    ];
+                });
+            
+            return $numeros;
+        }
+
         $numeros = Numeros::with('filas', 'estados', 'customers')
             ->get()
             ->map(function($numero) {
@@ -19,6 +40,7 @@ class NumerosController extends Controller
                     'fila_prefix' => $numero->filas->prefix,
                     'fila' => $numero->filas->filas,
                     'estado' => $numero->estados->estados,
+                    'estado_id' => $numero->estados->id,
                     'nombre' => $numero->customers,
                 ];
             });

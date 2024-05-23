@@ -14,16 +14,21 @@ return new class extends Migration
         Schema::create('estados', function (Blueprint $table) {
             $table->id();
             $table->enum('estados', [
-                'sin atender',
+                'todos',
+                'para ventanilla',
                 'en ventanilla',
+                'para preparacion',
                 'en preparacion',
-                'para pagar',
+                'para caja',
+                'en caja',
                 'para entregar',
+                'en entrega',
                 'pausado',
                 'cancelado',
                 'finalizado',
             ]);
             $table->boolean('active');
+            $table->boolean('paraLlamar');
             $table->timestamps();
         });
     }

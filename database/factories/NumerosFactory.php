@@ -22,7 +22,7 @@ class NumerosFactory extends Factory
             // 'user_id' => self::$counter3 < 9 ? self::$counter3++ : null,
             'paused' => false,
             'canceled' => false,
-            'estados_id' => 1,
+            'estados_id' => 4,
             'filas_id' => 1
         ];
     }

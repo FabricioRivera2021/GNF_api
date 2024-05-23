@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class EstadosController extends Controller
 {
     public function allEstados(){
-        //todos los estados
-        $estados = Estados::all();
+        //todos los estados que puedan ser llamados
+        $estados = Estados::where('paraLlamar', 1)->get();
 
         $estados->map(function($estado){
             return [

@@ -16,6 +16,6 @@ Route::post("/login", [AuthController::class, "login"]);
 Route::post("/createNumber", [NumerosController::class, "createNumber"]);
 Route::post("/createNumberFromSW", [NumerosController::class, "createNumberFromSW"]);
 
-Route::get("/allNumbers", [NumerosController::class, "allNumbers"]);
+Route::get("/allNumbers/{id?}", [NumerosController::class, "allNumbers"]);
 
 Route::get("/allEstados", [EstadosController::class, "allEstados"]);
