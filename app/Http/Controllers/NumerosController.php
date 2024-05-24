@@ -16,6 +16,9 @@ class NumerosController extends Controller
         if($id && $id != 1){
             $estado = Estados::findOrFail($id);
             $numeros = Numeros::with('filas', 'estados', 'customers')
+                ->whereHas('estados', function($query) { //filtrar estados que son para llamar
+                    $query->where('parallamar', 1);
+                })
                 ->where('estados_id', $estado->id)
                 ->get()
                 ->map(function($numero) {
@@ -33,18 +36,21 @@ class NumerosController extends Controller
         }
 
         $numeros = Numeros::with('filas', 'estados', 'customers')
-            ->get()
-            ->map(function($numero) {
-                return [
-                    'numero' => $numero->numero,
-                    'fila_prefix' => $numero->filas->prefix,
-                    'fila' => $numero->filas->filas,
-                    'estado' => $numero->estados->estados,
-                    'estado_id' => $numero->estados->id,
-                    'nombre' => $numero->customers,
-                ];
-            });
-
+        ->whereHas('estados', function($query) { //filtrar estados que son para llamar
+            $query->where('parallamar', 1);
+        })
+        ->get()
+        ->map(function($numero) {
+            return [
+                'numero' => $numero->numero,
+                'fila_prefix' => $numero->filas->prefix,
+                'fila' => $numero->filas->filas,
+                'estado' => $numero->estados->estados,
+                'estado_id' => $numero->estados->id,
+                'nombre' => $numero->customers,
+            ];
+        });
+    
         return $numeros;
     }
 

@@ -18,4 +18,9 @@ class Estados extends Model
     {
         return $this->HasMany(Numeros::class);
     }
+
+    public function scopeParaLlamar($query)
+    {
+        return $query->where('paraLlamar', '=', 1);
+    }
 }
