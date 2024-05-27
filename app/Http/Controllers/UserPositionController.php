@@ -82,23 +82,45 @@ class UserPositionController extends Controller
      */
     public function changeUserCurrentPosition(Request $request){
         $data = $request->validate([
-            'user' => ['required'], //debo saber que usuario esta haciendo la peticion de cambio
+            'user_id' => ['required'], //debo saber que usuario esta haciendo la peticion de cambio
             'position' => ['required']
         ]);
 
-        //posicion hacia donde quiere ir el User
-        $newPosition = UserPosition::where('position', $data['position'])->first();
+        //posicion actual del usuario
+        $user = User::where('id', $data['user_id'])->first();
+        
+        //posicion actual
+        $actualPosition = UserPosition::where('id', $user->positions_id)->first();
 
-        //Valido que la posicion no este en uso por otro usuario
-        $positionTaken = User::where('positions_id', $newPosition->id);
+        //posicion hacia donde quiere ir el User
+        $userPosition = UserPosition::where('position', $data['position'])->first();
+        
+        // dd($userPosition->id);//id de la posicion
+        // dd($userPosition->position);//nombre de la posicion
+        // dd($userPosition->active);//si la posicion esta operativa
 
         //valido que exista la posicion y que no este en uso
-        if(!$newPosition || $positionTaken){
+        if($userPosition->occupied == 1){
             return response([
-                'message' => 'La posición no existe u otro usuario la esta utilizando'
+                'message' => 'La posicion no existe u otro usuario la esta utilizando'
             ], 500);
         }
 
+        //actualizo el occuppied de la posicion
+        // Quitar el estado ocupado de la posicion actual
+        $actualPosition->occupied = 0;
+        $actualPosition->save();
+
+        // Agregar el estado ocupado a la posicion nueva
+        $userPosition->occupied = 1;
+        $userPosition->save();
+
         //actualizo la posicion....
+        $user->positions_id = $userPosition->id;
+        $user->save();
+
+        return response([
+            'message' => 'success!'
+        ]);
     }
 }

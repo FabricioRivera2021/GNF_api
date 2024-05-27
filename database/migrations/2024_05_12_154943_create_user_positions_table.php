@@ -25,6 +25,7 @@ return new class extends Migration
                 'caja 1',
                 'caja 2',
             ]);
+            $table->boolean('occupied');
             $table->boolean('active');
             $table->timestamps();
         });

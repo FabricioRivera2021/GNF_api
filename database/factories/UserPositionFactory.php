@@ -18,6 +18,7 @@ class UserPositionFactory extends Factory
     {
         return [
             'position' => 1,
+            'occupied' => 0,
             'active' => 1
         ];
     }

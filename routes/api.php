@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\NumerosController;
+use App\Http\Controllers\UserPositionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +27,5 @@ Route::post("/createNumberFromSW", [NumerosController::class, "createNumberFromS
 Route::get("/allNumbers/{id?}", [NumerosController::class, "allNumbers"]);
 
 Route::get("/allEstados", [EstadosController::class, "allEstados"]);
+
+Route::post("/changePosition", [UserPositionController::class, "changeUserCurrentPosition"]);
