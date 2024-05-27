@@ -11,8 +11,11 @@ class UserPositionController extends Controller
     /**
      * Enumerar todas las posiciones
      */
-    public function allPositions(){
+    public function allPositions(Request $request){
         //traer todas las posiciones
+        $positions = UserPosition::all();
+
+        return response($positions);
     }
 
     /**
@@ -120,6 +123,7 @@ class UserPositionController extends Controller
         $user->save();
 
         return response([
+            'position_id' => $user->positions_id,
             'message' => 'success!'
         ]);
     }
