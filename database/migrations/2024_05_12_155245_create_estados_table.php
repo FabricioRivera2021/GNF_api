@@ -21,7 +21,7 @@ return new class extends Migration
                 'en preparacion',
                 'para caja',
                 'en caja',
-                'para entregar',
+                'para entrega',
                 'en entrega',
                 'pausado',
                 'cancelado',

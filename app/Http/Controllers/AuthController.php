@@ -38,6 +38,11 @@ class AuthController extends Controller
             // $request->session()->regenerate();
             // return redirect()->intended('dashboard');
             $token = $user->createToken('auth_token')->plainTextToken;
+
+            //reseteo la posicion del usuario a sin asignar por las dudas
+            $user->positions_id = 1;
+            $user->save();
+
             return [
                 'user' => $user,
                 'token' => $token,

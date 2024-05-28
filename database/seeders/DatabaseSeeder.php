@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Estados::factory()->create(['estados' => 'en preparacion', 'active' => 1, 'paraLlamar' => 0]);
         \App\Models\Estados::factory()->create(['estados' => 'para caja', 'active' => 1, 'paraLlamar' => 1]);
         \App\Models\Estados::factory()->create(['estados' => 'en caja', 'active' => 1, 'paraLlamar' => 0]);
-        \App\Models\Estados::factory()->create(['estados' => 'para entregar', 'active' => 1, 'paraLlamar' => 1]);
+        \App\Models\Estados::factory()->create(['estados' => 'para entrega', 'active' => 1, 'paraLlamar' => 1]);
         \App\Models\Estados::factory()->create(['estados' => 'en entrega', 'active' => 1, 'paraLlamar' => 0]);
         \App\Models\Estados::factory()->create(['estados' => 'pausado', 'active' => 1, 'paraLlamar' => 1]);
         \App\Models\Estados::factory()->create(['estados' => 'cancelado', 'active' => 1, 'paraLlamar' => 1]);
