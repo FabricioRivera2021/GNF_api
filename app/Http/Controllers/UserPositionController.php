@@ -114,9 +114,11 @@ class UserPositionController extends Controller
         $actualPosition->occupied = 0;
         $actualPosition->save();
 
-        // Agregar el estado ocupado a la posicion nueva
-        $userPosition->occupied = 1;
-        $userPosition->save();
+        // Agregar el estado ocupado a la posicion nueva, si la misma no es "sin asignar"
+        if($userPosition->id != 1){
+            $userPosition->occupied = 1;
+            $userPosition->save();
+        }
 
         //actualizo la posicion....
         $user->positions_id = $userPosition->id;
