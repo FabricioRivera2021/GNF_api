@@ -29,4 +29,5 @@ Route::get("/allNumbers/{id?}", [NumerosController::class, "allNumbers"]);
 Route::get("/allEstados", [EstadosController::class, "allEstados"]);
 
 Route::get("/allPositions", [UserPositionController::class, "allPositions"]);
-Route::post("/changePosition/{id}", [UserPositionController::class, "changeUserCurrentPosition"]);
+Route::get("/currentPosition", [UserPositionController::class, "currentPosition"]);
+Route::post("/changePosition/{id?}", [UserPositionController::class, "changeUserCurrentPosition"]);

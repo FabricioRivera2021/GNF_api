@@ -78,19 +78,19 @@ class UserPositionController extends Controller
      * --------------------------------------------------------------------------------------------------------------------------
      */
 
-
     /**
      * Cambiar la posicion actual del usuario en el sistema
      * Por defecto todos los User estan en la posicion "sin asignar" al loguearse
      */
     public function changeUserCurrentPosition(Request $request){
         $data = $request->validate([
-            'user_id' => ['required'], //debo saber que usuario esta haciendo la peticion de cambio
+            // 'user_id' => ['required'], //debo saber que usuario esta haciendo la peticion de cambio
             'position' => ['required']
         ]);
 
         //posicion actual del usuario
-        $user = User::where('id', $data['user_id'])->first();
+        // $user = User::where('id', $data['user_id'])->first();
+        $user = $request->user();
         
         //posicion actual
         $actualPosition = UserPosition::where('id', $user->positions_id)->first();
@@ -124,7 +124,23 @@ class UserPositionController extends Controller
 
         return response([
             'position_id' => $user->positions_id,
-            'message' => 'success!'
+            'position_name' => $userPosition->position,
+            'message' => 'Success'
+        ]);
+    }
+
+    /**
+     * Traer la posicion actual del usuario logueado
+     */
+    public function currentPosition(Request $request){
+        $user = $request->user();
+
+        $position_id = $user->positions_id;
+
+        $position = UserPosition::where('id', $position_id)->first();
+
+        return response([
+            'position' => $position->position
         ]);
     }
 }
