@@ -17,12 +17,14 @@ class NumerosFactory extends Factory
     private static $counter = 1;
     public function definition(): array
     {
+        // Calculate estados_id based on the counter
+        $estados_id = intdiv(self::$counter - 1, 5) + 1;
+
         return [
             'numero' => self::$counter++,
-            // 'user_id' => self::$counter3 < 9 ? self::$counter3++ : null,
             'paused' => false,
             'canceled' => false,
-            'estados_id' => 2,
+            'estados_id' => $estados_id,
             'filas_id' => 1
         ];
     }
