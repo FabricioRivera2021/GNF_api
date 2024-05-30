@@ -23,9 +23,9 @@ return new class extends Migration
             $table->boolean('active');
             $table->timestamps();
             $table->foreign('positions_id')->references('id')->on('user_positions')
-            ->onDelete('cascade');
+                ->onDelete('cascade');
             $table->foreign('roles_id')->references('id')->on('roles')
-            ->onDelete('cascade');
+                ->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

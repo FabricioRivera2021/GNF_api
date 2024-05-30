@@ -19,7 +19,7 @@ class CustomersFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'numeros_id' => null,//(self::$counter > 20) ? null : self::$counter++,
+            'numeros_id' => (self::$counter < 55) ? self::$counter++ : null,
             'ci' => fake()->numberBetween(1000000, 5000000),
             'active' => 1
         ];

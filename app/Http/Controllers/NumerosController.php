@@ -202,11 +202,39 @@ class NumerosController extends Controller
         ]);
     }
 
-    public function callNumber(Auth $user, int $number){
+    public function asignNumberToUser(Request $request){
         /**
          * Tengo que saber que usuario llamo a esta funcion y 
          *  asignarle el numero que llamo
          */
+        $user = Auth::user();
+
+        $numero = Numeros::where('id', $request->id)->first();
+
+        if($numero){
+            $numero->user_id = $user->id;
+            $numero->save();
+
+            return response([
+                'nro' => $numero->numero,
+                'message' => 'success'
+            ]);
+        }
+
+        return response([
+            'message' => 'Error'
+        ]);
+
+    }
+
+    public function getCurrentSelectedNumber(){
+        $user = Auth::user();
+
+        $numero = Numeros::where('user_id', $user->id)->first();
+
+        return response([
+            'nro' => $numero->numero
+        ]);
     }
 
     public function derivateNumber(Request $request){
