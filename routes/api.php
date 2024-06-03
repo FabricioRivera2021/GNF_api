@@ -29,6 +29,9 @@ Route::get("/getCurrentSelectedNumber", [NumerosController::class, "getCurrentSe
 Route::get("/allNumbers/{id?}", [NumerosController::class, "allNumbers"]);
 
 Route::get("/allEstados", [EstadosController::class, "allEstados"]);
+Route::post("/setNextState", [EstadosController::class, "setNextState"]);
+Route::post("/setPause", [EstadosController::class, "pauseNumber"]);
+Route::post("/setCanceled", [EstadosController::class, "cancelNumber"]);
 
 Route::get("/allPositions", [UserPositionController::class, "allPositions"]);
 Route::get("/currentPosition", [UserPositionController::class, "currentPosition"]);

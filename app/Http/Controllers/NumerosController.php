@@ -232,6 +232,12 @@ class NumerosController extends Controller
 
         $numero = Numeros::where('user_id', $user->id)->first();
 
+        if(!$numero){
+            return response([
+                'msg' => 'No hay numero seleccionado'
+            ]);
+        }
+
         return response([
             'nro' => $numero->numero
         ]);
