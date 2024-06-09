@@ -20,6 +20,14 @@ class NumerosFactory extends Factory
         // Calculate estados_id based on the counter
         $estados_id = intdiv(self::$counter - 1, 5) + 1;
 
+        // Lista de valores prohibidos
+        $valores_prohibidos = [3, 5, 7, 9];
+
+        // Mientras el valor esté en la lista de prohibidos, incrementa el valor
+        while (in_array($estados_id, $valores_prohibidos)) {
+            $estados_id++;
+        }
+
         return [
             'numero' => self::$counter++,
             'paused' => false,

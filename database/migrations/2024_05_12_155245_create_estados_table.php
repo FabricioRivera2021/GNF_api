@@ -23,8 +23,6 @@ return new class extends Migration
                 'en caja',
                 'para entrega',
                 'en entrega',
-                'pausado',
-                'cancelado',
                 'finalizado',
             ]);
             $table->boolean('active');

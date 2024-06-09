@@ -24,6 +24,8 @@ Route::get("/dashboard");
 Route::post("/createNumber", [NumerosController::class, "createNumber"]);
 Route::post("/createNumberFromSW", [NumerosController::class, "createNumberFromSW"]);
 Route::post("/asignNumberToUser", [NumerosController::class, "asignNumberToUser"]);
+Route::get("/derivateTo", [NumerosController::class, "derivateTo"]);
+Route::post("/derivateToPosition", [NumerosController::class, "derivateToPosition"]);
 
 Route::get("/getCurrentSelectedNumber", [NumerosController::class, "getCurrentSelectedNumber"]);
 Route::get("/allNumbers/{id?}", [NumerosController::class, "allNumbers"]);

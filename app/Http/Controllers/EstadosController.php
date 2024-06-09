@@ -38,19 +38,16 @@ class EstadosController extends Controller
     public function setNextState(Request $request){
         //get the current number and state
         $numero = Numeros::where('numero', $request->numero)->first();
-        $currentStateID = $numero->estados_id;
+        $estado = Estados::where('id', $numero->estados_id)->first();
 
         // dd($currentStateID);
-        
-        $pausado = Estados::where('id', $currentStateID)
-            ->where('estados', 'pausado')
+        $pausado = $numero::where('paused', 1)
             ->first();
 
-        $cancelado = Estados::where('id', $currentStateID)
-            ->where('estados', 'cancelado')
+        $cancelado = $numero::where('canceled', 1)
             ->first();
 
-        $finalizado = Estados::where('id', $currentStateID)
+        $finalizado = Estados::where('id', $estado->id)
             ->where('estados', 'finalizado')
             ->first();
 
@@ -60,34 +57,33 @@ class EstadosController extends Controller
             ]);
         }
 
-        //get the next state that has paraLlamar in 1
-        $stateID = $currentStateID;
-        
-        //aumentar el contador si "paraLlamar" es 0
-        // o el estado es "pausado" y/o "cancelado"
-        do{
-            $stateID++;    
-            $nextStateID = Estados::where('id', $stateID)
-                ->where('paraLlamar', 1)
-                ->first();
-        }while($nextStateID == null);
-            
-        $numero->estados_id = $stateID; //set the new state for the number
+        $numero->estados_id = $estado->id + 1; //set the new state for the number
         $numero->user_id = null; //release the number
         $numero->save();
 
         return response([
-            'message' => 'Success',
+            'message' => 'success',
         ]);
+
+        // //get the next state that has paraLlamar in 1
+        // $stateID = $currentStateID;
+        
+        // //aumentar el contador si "paraLlamar" es 0
+        // // o el estado es "pausado" y/o "cancelado"
+        // do{
+        //     // $stateID++;    
+        //     $nextStateID = Estados::where('id', $stateID)
+        //         ->where('paraLlamar', 1)
+        //         ->first();
+        // }while($nextStateID == null);
     }
 
     //pausar un numero
     public function pauseNumber(Request $request){
         //get the current number and state
         $numero = Numeros::where('numero', $request->numero)->first();
-        $currentStateID = $numero->estados_id;
 
-        $numero->estados_id = 10; //set the number as paused
+        $numero->paused = 1; //set the number as paused
         $numero->user_id = null; //release the number
         $numero->save();
 
@@ -100,9 +96,8 @@ class EstadosController extends Controller
     public function cancelNumber(Request $request){
         //get the current number and state
         $numero = Numeros::where('numero', $request->numero)->first();
-        $currentStateID = $numero->estados_id;
 
-        $numero->estados_id = 11; //set the number as canceled
+        $numero->canceled = 1; //set the number as canceled
         $numero->user_id = null; //release the number
         $numero->save();
 

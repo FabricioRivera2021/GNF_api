@@ -15,7 +15,7 @@ class NumerosController extends Controller
 
         if($id && $id != 1){
             $estado = Estados::findOrFail($id);
-            $numeros = Numeros::with('filas', 'estados', 'customers')
+            $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
                 ->whereHas('estados', function($query) { //filtrar estados que son para llamar
                     $query->where('parallamar', 1);
                 })
@@ -29,16 +29,17 @@ class NumerosController extends Controller
                         'estado' => $numero->estados->estados,
                         'estados_id' => $numero->estados->id,
                         'nombre' => $numero->customers,
+                        'user' => $numero->user?->name,
+                        'pausado' => $numero->paused,
+                        'cancelado' => $numero->canceled
                     ];
                 });
             
             return $numeros;
         }
 
-        $numeros = Numeros::with('filas', 'estados', 'customers')
-        ->whereHas('estados', function($query) { //filtrar estados que son para llamar
-            $query->where('parallamar', 1);
-        })
+        //para cuando el filtro sea TODOS
+        $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
         ->get()
         ->map(function($numero) {
             return [
@@ -48,6 +49,9 @@ class NumerosController extends Controller
                 'estado' => $numero->estados->estados,
                 'estado_id' => $numero->estados->id,
                 'nombre' => $numero->customers,
+                'user' => $numero->user?->name,
+                'pausado' => $numero->paused,
+                'cancelado' => $numero->canceled
             ];
         });
     
@@ -206,25 +210,51 @@ class NumerosController extends Controller
         /**
          * Tengo que saber que usuario llamo a esta funcion y 
          *  asignarle el numero que llamo
+         * si el numero esta pausado o cancelado lo retoma
          */
         $user = Auth::user();
 
         $numero = Numeros::where('id', $request->id)->first();
+        $estado = Estados::where('id', $numero->estados_id)->first();
 
-        if($numero){
-            $numero->user_id = $user->id;
-            $numero->save();
-
+        if(!$numero){
             return response([
-                'nro' => $numero->numero,
-                'message' => 'success'
+                'message' => 'Error'
             ]);
         }
 
-        return response([
-            'message' => 'Error'
-        ]);
+        //si el numero esta pausado
+        if($numero->paused == 1){
+            $numero->user_id = $user->id; //asigna el numero al User
+            $numero->paused = 0;
+            $numero->save();
+            
+            return response([
+                'nro' => $numero->numero,
+                'message' => 'Retomado el pausado'
+            ]);
+        }
 
+        //si el numero esta cancelado
+        if($numero->canceled == 1){
+            $numero->user_id = $user->id; //asigna el numero al User
+            $numero->canceled = 0;
+            $numero->save();
+            
+            return response([
+                'nro' => $numero->numero,
+                'message' => 'Retomado el cancelado'
+            ]);
+        }
+
+        $numero->user_id = $user->id; //asigna el numero al User
+        $numero->estados_id = $estado->id + 1; //Le sumo 1 al estado si corresponde
+        $numero->save();
+
+        return response([
+            'nro' => $numero->numero,
+            'message' => 'Numero llamado'
+        ]);
     }
 
     public function getCurrentSelectedNumber(){
@@ -243,12 +273,45 @@ class NumerosController extends Controller
         ]);
     }
 
-    public function derivateNumber(Request $request){
+    public function derivateTo(Request $request){
         /****
          * Tengo que... conocer el user, donde esta actualmente el numero 
          * y a que posicion se lo quiere derivar
-         *  Puede ser a un estado o a un User que este en otra posicion
+         *  Puede ser a un estado o a un User que este en otra posicion --
+         *  En principio se deriva a una posicion del sistema que quede en modo para llamar
          */
+
+        $user = Auth::user();
+        $numero = Numeros::where('numero', $request->number)->first();
+
+        $posicionesValidas = Estados::where('paraLLamar', 1)
+            ->where('id', '!=', 1)
+            ->get()
+            ->map(function($estado) {
+                return [
+                    'estado' => $estado->estados
+                ];
+            });
+
+        return $posicionesValidas;
+    }
+
+    public function derivateToPosition(Request $request){
+
+        $user = Auth::user();
+        $numero = Numeros::where('numero', $request->number)->first();
+
+        $position = Estados::where('estados', $request->position)->first();
+
+        // dd($numero);
+
+        $numero->estados_id = $position->id;//seteo la nueva posicion
+        $numero->user_id = null;//libero el numero
+        $numero->save();
+
+        return response([
+            'msg' => 'success'
+        ]);
     }
 
 }

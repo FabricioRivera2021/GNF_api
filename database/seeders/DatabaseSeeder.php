@@ -26,8 +26,6 @@ class DatabaseSeeder extends Seeder
         \App\Models\Estados::factory()->create(['estados' => 'en caja', 'active' => 1, 'paraLlamar' => 0]);
         \App\Models\Estados::factory()->create(['estados' => 'para entrega', 'active' => 1, 'paraLlamar' => 1]);
         \App\Models\Estados::factory()->create(['estados' => 'en entrega', 'active' => 1, 'paraLlamar' => 0]);
-        \App\Models\Estados::factory()->create(['estados' => 'pausado', 'active' => 1, 'paraLlamar' => 1]);
-        \App\Models\Estados::factory()->create(['estados' => 'cancelado', 'active' => 1, 'paraLlamar' => 1]);
         \App\Models\Estados::factory()->create(['estados' => 'finalizado', 'active' => 1, 'paraLlamar' => 1]);
 
         \App\Models\Filas::factory()->create(['filas' => 'Comun', 'prefix' => 'NC', 'active' => 1]);
@@ -56,7 +54,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory()->create(['name' => 'Ricardo','email' => 'generico@example.com','roles_id' => 2 , 'positions_id' => 1]);
         \App\Models\User::factory()->create(['name' => 'Miguel','email' => 'generico2@example.com','roles_id' => 2 , 'positions_id' => 1]);
         
-        \App\Models\Numeros::factory(55)->create();
+        \App\Models\Numeros::factory(45)->create();
 
         \App\Models\Customers::factory(100)->create();
     }
