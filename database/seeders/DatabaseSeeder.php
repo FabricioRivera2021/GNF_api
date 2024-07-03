@@ -45,14 +45,10 @@ class DatabaseSeeder extends Seeder
         \App\Models\UserPosition::factory()->create(['position' => 'caja 2']);
 
         \App\Models\User::factory()->create(['name' => 'admin','email' => 'admin@example.com','roles_id' => 1, 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Marcos','email' => 'ceci@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Diego','email' => 'vero@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Gimena','email' => 'luci@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Diana','email' => 'vale@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Marcela','email' => 'marcos@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Pepe','email' => 'fabi@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Ricardo','email' => 'generico@example.com','roles_id' => 2 , 'positions_id' => 1]);
-        \App\Models\User::factory()->create(['name' => 'Miguel','email' => 'generico2@example.com','roles_id' => 2 , 'positions_id' => 1]);
+        \App\Models\User::factory()->create(['name' => 'Generico1','email' => 'generico1@example.com','roles_id' => 2 , 'positions_id' => 1]);
+        \App\Models\User::factory()->create(['name' => 'Generico2','email' => 'generico2@example.com','roles_id' => 2 , 'positions_id' => 1]);
+        \App\Models\User::factory()->create(['name' => 'Generico3','email' => 'generico3@example.com','roles_id' => 2 , 'positions_id' => 1]);
+        \App\Models\User::factory()->create(['name' => 'Generico4','email' => 'generico4@example.com','roles_id' => 2 , 'positions_id' => 1]);
         
         \App\Models\Numeros::factory(45)->create();
 
