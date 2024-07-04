@@ -29,6 +29,8 @@ Route::post("/derivateToPosition", [NumerosController::class, "derivateToPositio
 
 Route::get("/getCurrentSelectedNumber", [NumerosController::class, "getCurrentSelectedNumber"]);
 Route::get("/allNumbers/{id?}", [NumerosController::class, "allNumbers"]);
+Route::get("/filterPausedNumbers", [NumerosController::class, "filterPausedNumbers"]);
+Route::get("/filterCancelNumbers", [NumerosController::class, "filterCancelNumbers"]);
 
 Route::get("/allEstados", [EstadosController::class, "allEstados"]);
 Route::post("/setNextState", [EstadosController::class, "setNextState"]);

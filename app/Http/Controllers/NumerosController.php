@@ -11,8 +11,52 @@ use Illuminate\Support\Facades\Auth;
 
 class NumerosController extends Controller
 {
-    public function allNumbers( $id = null ){
 
+    public function filterPausedNumbers(){
+        //para cuando el filtro sea pausado
+        $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
+        ->where('paused', 1)
+        ->get()
+        ->map(function($numero) {
+            return [
+                'numero' => $numero->numero,
+                'fila_prefix' => $numero->filas->prefix,
+                'fila' => $numero->filas->filas,
+                'estado' => $numero->estados->estados,
+                'estado_id' => $numero->estados->id,
+                'nombre' => $numero->customers,
+                'user' => $numero->user?->name,
+                'pausado' => $numero->paused,
+                'cancelado' => $numero->canceled
+            ];
+        });
+    
+        return $numeros;
+    }
+
+    public function filterCancelNumbers(){
+        //para cuando el filtro sea pausado
+        $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
+        ->where('canceled', 1)
+        ->get()
+        ->map(function($numero) {
+            return [
+                'numero' => $numero->numero,
+                'fila_prefix' => $numero->filas->prefix,
+                'fila' => $numero->filas->filas,
+                'estado' => $numero->estados->estados,
+                'estado_id' => $numero->estados->id,
+                'nombre' => $numero->customers,
+                'user' => $numero->user?->name,
+                'pausado' => $numero->paused,
+                'cancelado' => $numero->canceled
+            ];
+        });
+    
+        return $numeros;
+    }
+
+    public function allNumbers( $id = null ){
         if($id && $id != 1){
             $estado = Estados::findOrFail($id);
             $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
@@ -34,7 +78,7 @@ class NumerosController extends Controller
                         'cancelado' => $numero->canceled
                     ];
                 });
-            
+
             return $numeros;
         }
 
@@ -313,5 +357,7 @@ class NumerosController extends Controller
             'msg' => 'success'
         ]);
     }
+
+
 
 }
