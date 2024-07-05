@@ -40,17 +40,22 @@ class EstadosController extends Controller
         $numero = Numeros::where('numero', $request->numero)->first();
         $estado = Estados::where('id', $numero->estados_id)->first();
 
-        // dd($currentStateID);
-        $pausado = $numero::where('paused', 1)
+        // Check if the current number is paused
+        $pausado = Numeros::where('id', $numero->id)
+            ->where('paused', 1)
             ->first();
-
-        $cancelado = $numero::where('canceled', 1)
+        
+        // Check if the current number is canceled
+        $cancelado = Numeros::where('id', $numero->id)
+            ->where('canceled', 1)
             ->first();
-
+        
+        // Check if the current state is finalizado
         $finalizado = Estados::where('id', $estado->id)
             ->where('estados', 'finalizado')
             ->first();
-
+        
+        // dd($pausado);
         if($pausado || $cancelado || $finalizado){
             return response([
                 'message' => 'No se puede derivar, esta en estado pausado o cancelado'
