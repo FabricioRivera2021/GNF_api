@@ -52,7 +52,6 @@ class NumerosController extends Controller
                 'cancelado' => $numero->canceled
             ];
         });
-    
         return $numeros;
     }
 
