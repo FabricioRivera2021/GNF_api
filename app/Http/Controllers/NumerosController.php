@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class NumerosController extends Controller
 {
-
     public function filterPausedNumbers(){
         //para cuando el filtro sea pausado
         $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
@@ -27,10 +26,11 @@ class NumerosController extends Controller
                 'nombre' => $numero->customers,
                 'user' => $numero->user?->name,
                 'pausado' => $numero->paused,
-                'cancelado' => $numero->canceled
+                'cancelado' => $numero->canceled,
+                'created_at' => $numero->created_at,
+                'modified_at' => $numero->updated_at
             ];
-        });
-    
+        });    
         return $numeros;
     }
 
@@ -49,7 +49,9 @@ class NumerosController extends Controller
                 'nombre' => $numero->customers,
                 'user' => $numero->user?->name,
                 'pausado' => $numero->paused,
-                'cancelado' => $numero->canceled
+                'cancelado' => $numero->canceled,
+                'created_at' => $numero->created_at,
+                'modified_at' => $numero->updated_at
             ];
         });
         return $numeros;
@@ -74,7 +76,9 @@ class NumerosController extends Controller
                         'nombre' => $numero->customers,
                         'user' => $numero->user?->name,
                         'pausado' => $numero->paused,
-                        'cancelado' => $numero->canceled
+                        'cancelado' => $numero->canceled,
+                        'created_at' => $numero->created_at,
+                        'modified_at' => $numero->updated_at
                     ];
                 });
 
@@ -94,7 +98,9 @@ class NumerosController extends Controller
                 'nombre' => $numero->customers,
                 'user' => $numero->user?->name,
                 'pausado' => $numero->paused,
-                'cancelado' => $numero->canceled
+                'cancelado' => $numero->canceled,
+                'created_at' => $numero->created_at,
+                'modified_at' => $numero->updated_at
             ];
         });
     
@@ -164,10 +170,8 @@ class NumerosController extends Controller
     //empezar el proceso de crear el numero desde ventanilla
     public function createNumberFromSW(Request $request){
         $data = $request->validate([
-            /**
-             * Cedula del paciente - o cedulas
-             * Fila que se le va a asignar: Comun, Emergencia, FNR, Prioridad
-             */
+            /* Cedula del paciente - o cedulas
+             * Fila que se le va a asignar: Comun, Emergencia, FNR, Prioridad */
             'ci' => ['numeric', 'min:6'],
             'filas' => ['string']
         ]);
@@ -323,7 +327,6 @@ class NumerosController extends Controller
          *  Puede ser a un estado o a un User que este en otra posicion --
          *  En principio se deriva a una posicion del sistema que quede en modo para llamar
          */
-
         $user = Auth::user();
         $numero = Numeros::where('numero', $request->number)->first();
 
@@ -356,7 +359,4 @@ class NumerosController extends Controller
             'msg' => 'success'
         ]);
     }
-
-
-
 }
