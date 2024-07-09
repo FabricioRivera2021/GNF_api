@@ -122,10 +122,8 @@ class NumerosController extends Controller
             ], 404);
         }
 
-        /*
-        Si el usuario ya tiene un numero asignado devuelvo error
-        Solo con verificar que el usuario actual que esta sacando el numero
-        no tenga ya otro numero asignado deberia ser suficiente. */
+        /* Si el usuario ya tiene un numero asignado devuelvo error solo con verificar que el usuario 
+        actual que esta sacando el numero no tenga ya otro numero asignado deberia ser suficiente. */
         if($user->numeros_id != null){
             return response([
                 'message' => 'Customer already has a number'
@@ -141,7 +139,7 @@ class NumerosController extends Controller
         }
 
         //Consigo el proximo numero de la fila
-        $lastNumber = Numeros::where('filas_id', $fila->id)->first();
+        $lastNumber = Numeros::where('filas_id', $fila->id)->orderBy('id', 'desc')->first();
         // dd($lastNumber);
         if($lastNumber == null){
             $newNumber = 1;
