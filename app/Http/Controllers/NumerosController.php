@@ -160,9 +160,13 @@ class NumerosController extends Controller
             $user->save();
         }
 
-        return response([
+        return [
+            'cedula' => $user->ci,
+            'nombre' => $user->name,
+            'numero' => $newNumber,
+            'fila' => $fila->filas,
             'message' => 'Numero creado'
-        ]);
+        ];
     }
 
     //empezar el proceso de crear el numero desde ventanilla
