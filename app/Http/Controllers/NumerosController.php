@@ -165,6 +165,7 @@ class NumerosController extends Controller
             'nombre' => $user->name,
             'numero' => $newNumber,
             'fila' => $fila->filas,
+            'prefijo' => $fila->prefix,
             'message' => 'Numero creado'
         ];
     }
