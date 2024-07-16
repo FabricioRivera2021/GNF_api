@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filas;
 use Illuminate\Http\Request;
 
 class FilasController extends Controller
 {
     public function allFilas(){
         //todos los Filas
+        $filas = Filas::all();
+
+        $filas->map(function($fila){
+            return [
+                'fila' => $fila->filas,
+            ];
+        });
+
+        return $filas;
     }
     public function oneFila($id){
         //consultar una fila en particular

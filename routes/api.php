@@ -1,7 +1,7 @@
 <?php
-
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstadosController;
+use App\Http\Controllers\FilasController;
 use App\Http\Controllers\NumerosController;
 use App\Http\Controllers\UserPositionController;
 use Illuminate\Http\Request;
@@ -41,3 +41,5 @@ Route::get("/allPositions", [UserPositionController::class, "allPositions"]);
 Route::get("/currentPosition", [UserPositionController::class, "currentPosition"]);
 Route::post("/clearPosition", [UserPositionController::class, "clearPosition"]);
 Route::post("/changePosition/{id?}", [UserPositionController::class, "changeUserCurrentPosition"]);
+
+Route::get("/allFilas", [FilasController::class, "allFilas"]);
