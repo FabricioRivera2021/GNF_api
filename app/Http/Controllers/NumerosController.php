@@ -6,6 +6,7 @@ use App\Models\Customers;
 use App\Models\Estados;
 use App\Models\Filas;
 use App\Models\Numeros;
+use App\Models\UserPosition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -266,6 +267,8 @@ class NumerosController extends Controller
 
         $numero = Numeros::where('id', $request->id)->first();
         $estado = Estados::where('id', $numero->estados_id)->first();
+        $fila = Filas::where('id', $numero->filas_id)->first();
+        $position = UserPosition::where('id', $user->position_id)->first();
 
         if(!$numero){
             return response([
@@ -303,6 +306,10 @@ class NumerosController extends Controller
 
         return response([
             'nro' => $numero->numero,
+            'estado' => $estado->estados,
+            'fila' => $fila->filas,
+            'prefix' => $fila->prefix,
+            'lugar' => $position, //ventanilla donde esta el usuario
             'message' => 'Numero llamado'
         ]);
     }
