@@ -318,15 +318,27 @@ class NumerosController extends Controller
         $user = Auth::user();
 
         $numero = Numeros::where('user_id', $user->id)->first();
+        $estado = Estados::where('id', $numero->estados_id)->first();
+        $fila = Filas::where('id', $numero->filas_id)->first();
+        $position = UserPosition::where('id', $user->position_id)->first();
 
         if(!$numero){
             return response([
+                'nro' => null,
+                'estado' => "none",
+                'fila' => "none",
+                'prefix' => "none",
+                'lugar' => "none", //ventanilla donde esta el usuario
                 'msg' => 'No hay numero seleccionado'
             ]);
         }
 
         return response([
-            'nro' => $numero->numero
+            'nro' => $numero->numero,
+            'estado' => $estado->estados,
+            'fila' => $fila->filas,
+            'prefix' => $fila->prefix,
+            'lugar' => $position, //ventanilla donde esta el usuario
         ]);
     }
 
