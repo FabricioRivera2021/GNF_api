@@ -309,7 +309,7 @@ class NumerosController extends Controller
             'estado' => $estado->estados,
             'fila' => $fila->filas,
             'prefix' => $fila->prefix,
-            'lugar' => $position, //ventanilla donde esta el usuario
+            'lugar' => $position->position, //ventanilla donde esta el usuario
             'message' => 'Numero llamado'
         ]);
     }
@@ -320,7 +320,7 @@ class NumerosController extends Controller
         $numero = Numeros::where('user_id', $user->id)->first();
         $estado = Estados::where('id', $numero->estados_id)->first();
         $fila = Filas::where('id', $numero->filas_id)->first();
-        $position = UserPosition::where('id', $user->position_id)->first();
+        $position = UserPosition::where('id', $user->positions_id)->first();
 
         if(!$numero){
             return response([
@@ -338,7 +338,7 @@ class NumerosController extends Controller
             'estado' => $estado->estados,
             'fila' => $fila->filas,
             'prefix' => $fila->prefix,
-            'lugar' => $position, //ventanilla donde esta el usuario
+            'lugar' => $position->position, //ventanilla donde esta el usuario
         ]);
     }
 
