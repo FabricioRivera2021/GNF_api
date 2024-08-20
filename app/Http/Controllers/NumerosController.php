@@ -268,7 +268,7 @@ class NumerosController extends Controller
         $numero = Numeros::where('id', $request->id)->first();
         $estado = Estados::where('id', $numero->estados_id)->first();
         $fila = Filas::where('id', $numero->filas_id)->first();
-        $position = UserPosition::where('id', $user->position_id)->first();
+        $position = UserPosition::where('id', $user->positions_id)->first();
 
         if(!$numero){
             return response([
@@ -318,9 +318,6 @@ class NumerosController extends Controller
         $user = Auth::user();
 
         $numero = Numeros::where('user_id', $user->id)->first();
-        $estado = Estados::where('id', $numero->estados_id)->first();
-        $fila = Filas::where('id', $numero->filas_id)->first();
-        $position = UserPosition::where('id', $user->positions_id)->first();
 
         if(!$numero){
             return response([
@@ -332,6 +329,10 @@ class NumerosController extends Controller
                 'msg' => 'No hay numero seleccionado'
             ]);
         }
+
+        $estado = Estados::where('id', $numero->estados_id)->first();
+        $fila = Filas::where('id', $numero->filas_id)->first();
+        $position = UserPosition::where('id', $user->positions_id)->first();
 
         return response([
             'nro' => $numero->numero,
