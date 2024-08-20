@@ -43,3 +43,4 @@ Route::post("/clearPosition", [UserPositionController::class, "clearPosition"]);
 Route::post("/changePosition/{id?}", [UserPositionController::class, "changeUserCurrentPosition"]);
 
 Route::get("/allFilas", [FilasController::class, "allFilas"]);
+Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAllPosition"]);

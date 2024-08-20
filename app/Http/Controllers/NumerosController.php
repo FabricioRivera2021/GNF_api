@@ -266,15 +266,15 @@ class NumerosController extends Controller
         $user = Auth::user();
 
         $numero = Numeros::where('id', $request->id)->first();
-        $estado = Estados::where('id', $numero->estados_id)->first();
-        $fila = Filas::where('id', $numero->filas_id)->first();
-        $position = UserPosition::where('id', $user->positions_id)->first();
-
         if(!$numero){
             return response([
                 'message' => 'Error'
             ]);
         }
+
+        $estado = Estados::where('id', $numero->estados_id)->first();
+        $fila = Filas::where('id', $numero->filas_id)->first();
+        $position = UserPosition::where('id', $user->positions_id)->first();
 
         //si el numero esta pausado
         if($numero->paused == 1){
@@ -373,7 +373,6 @@ class NumerosController extends Controller
         $position = Estados::where('estados', $request->position)->first();
 
         // dd($numero);
-
         $numero->estados_id = $position->id;//seteo la nueva posicion
         $numero->user_id = null;//libero el numero
         $numero->save();

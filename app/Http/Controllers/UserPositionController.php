@@ -165,4 +165,20 @@ class UserPositionController extends Controller
             'message' => 'Position cleared'
         ]);
     }
+
+    /**
+     * Force clean all positions
+     */
+    public function forceClearAllPosition(){
+
+        //desocupo todas las posiciones
+        UserPosition::query()->update(['occupied' => 0]);
+
+        //seteo la posicion de todos los usuarios en sin asignar
+        User::query()->update(['positions_id' => 1]);
+        
+        return response([
+            'message' => 'All Position cleared'
+        ]);
+    }
 }
