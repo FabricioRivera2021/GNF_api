@@ -284,6 +284,10 @@ class NumerosController extends Controller
             
             return response([
                 'nro' => $numero->numero,
+                'estado' => $estado->estados,
+                'fila' => $fila->filas,
+                'prefix' => $fila->prefix,
+                'lugar' => $position->position, //ventanilla donde esta el usuario
                 'message' => 'Retomado el pausado'
             ]);
         }
@@ -296,6 +300,10 @@ class NumerosController extends Controller
             
             return response([
                 'nro' => $numero->numero,
+                'estado' => $estado->estados,
+                'fila' => $fila->filas,
+                'prefix' => $fila->prefix,
+                'lugar' => $position->position, //ventanilla donde esta el usuario
                 'message' => 'Retomado el cancelado'
             ]);
         }
