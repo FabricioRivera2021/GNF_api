@@ -150,10 +150,11 @@ class UserPositionController extends Controller
      * Clear the current asigned position if any
      */
     public function clearPosition(Request $request){
-        $user = $request->user();
+        // dd($request->id);
+        $user = User::where("id", $request->id)->first();
 
         //desocupo la posicion
-        $position = UserPosition::where('id', $user->positions_id)->first();
+        $position = UserPosition::where('id', $user->id)->first();
         $position->occupied = 0;
         $position->save();
 
@@ -162,7 +163,7 @@ class UserPositionController extends Controller
         $user->save();
         
         return response([
-            'message' => 'Position cleared'
+            'message' => 'Position ' . $user->positions_id . ' cleared'
         ]);
     }
 
