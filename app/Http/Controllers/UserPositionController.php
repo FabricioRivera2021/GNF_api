@@ -11,7 +11,7 @@ class UserPositionController extends Controller
     /**
      * Enumerar todas las posiciones
      */
-    public function allPositions(Request $request){
+    public function allPositions(){
         //traer todas las posiciones
         $positions = UserPosition::all();
 

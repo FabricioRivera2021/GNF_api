@@ -49,8 +49,17 @@ class UserController extends Controller
      * todos los usuarios
      * usuarios por roles
      * tiempos de espera de usuarios
-     *  
-     */
+    */
+
+    /* usuarios por posicion fuera de la posicion 1
+    */
+    public function usersInPositions(){
+        $data = User::where('positions_id', '>', 1)->get();
+
+        return response([
+            'users' => $data
+        ]);
+    }
 
     /**
      * Modificacion de usuarios

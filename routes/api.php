@@ -3,6 +3,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
 use App\Http\Controllers\NumerosController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPositionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::post("/login", [AuthController::class, "login"]);
 // Route::post("/logout", [AuthController::class, "logout"]);
 
 Route::get("/dashboard");
+
+Route::get("/usersInPositions", [UserController::class, "usersInPositions"]);
 
 Route::post("/createNumber", [NumerosController::class, "createNumber"]);
 Route::post("/createNumberFromSW", [NumerosController::class, "createNumberFromSW"]);
