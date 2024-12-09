@@ -389,4 +389,10 @@ class NumerosController extends Controller
             'msg' => 'success'
         ]);
     }
+
+    public function userIsProcesingNumber(){
+        $numero = Numeros::where('user_id', '!=', 'null')->get();
+
+        return response($numero);
+    }
 }

@@ -24,6 +24,8 @@ Route::get("/dashboard");
 
 Route::get("/usersInPositions", [UserController::class, "usersInPositions"]);
 
+Route::get("/isProcesingNumber", [NumerosController::class, "userIsProcesingNumber"]);
+
 Route::post("/createNumber", [NumerosController::class, "createNumber"]);
 Route::post("/createNumberFromSW", [NumerosController::class, "createNumberFromSW"]);
 Route::post("/asignNumberToUser", [NumerosController::class, "asignNumberToUser"]);
