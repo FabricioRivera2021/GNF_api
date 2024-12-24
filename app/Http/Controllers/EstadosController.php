@@ -36,51 +36,37 @@ class EstadosController extends Controller
 
     //enviar el numero al proximo estado
     public function setNextState(Request $request){
-        //get the current number and state
-        $numero = Numeros::where('numero', $request->numero)->first();
-        $estado = Estados::where('id', $numero->estados_id)->first();
-
-        // Check if the current number is paused
-        $pausado = Numeros::where('id', $numero->id)
-            ->where('paused', 1)
-            ->first();
-        
-        // Check if the current number is canceled
-        $cancelado = Numeros::where('id', $numero->id)
-            ->where('canceled', 1)
-            ->first();
-        
-        // Check if the current state is finalizado
-        $finalizado = Estados::where('id', $estado->id)
-            ->where('estados', 'finalizado')
-            ->first();
-        
-        // dd($pausado);
-        if($pausado || $cancelado || $finalizado){
-            return response([
-                'message' => 'No se puede derivar, esta en estado pausado o cancelado'
-            ]);
-        }
-
-        $numero->estados_id = $estado->id + 1; //set the new state for the number
-        $numero->user_id = null; //release the number
-        $numero->save();
-
-        return response([
-            'message' => 'success',
+        // Validate the request
+        $request->validate([
+            'numero' => 'required|integer',
         ]);
 
-        // //get the next state that has paraLlamar in 1
-        // $stateID = $currentStateID;
-        
-        // //aumentar el contador si "paraLlamar" es 0
-        // // o el estado es "pausado" y/o "cancelado"
-        // do{
-        //     // $stateID++;    
-        //     $nextStateID = Estados::where('id', $stateID)
-        //         ->where('paraLlamar', 1)
-        //         ->first();
-        // }while($nextStateID == null);
+        // Get the current number and state
+        $numero = Numeros::where('numero', $request->numero)->first();
+        if (!$numero) {
+            return response()->json(['message' => 'Numero not found'], 404);
+        }
+
+        $estado = Estados::where('id', $numero->estados_id)->first();
+        if (!$estado) {
+            return response()->json(['message' => 'Estado not found'], 404);
+        }
+
+        // Check if the current number is paused, canceled, or finalizado
+        $pausado = $numero->paused;
+        $cancelado = $numero->canceled;
+        $finalizado = $estado->estados === 'finalizado';
+
+        if ($pausado || $cancelado || $finalizado) {
+            return response()->json(['message' => 'No se puede derivar, esta en estado pausado o cancelado'], 400);
+        }
+
+        // Set the new state for the number
+        $numero->estados_id = $estado->id + 1;
+        $numero->user_id = null; // Release the number
+        $numero->save();
+
+        return response()->json(['message' => 'success']);
     }
 
     //pausar un numero
