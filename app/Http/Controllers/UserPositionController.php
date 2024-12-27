@@ -136,7 +136,6 @@ class UserPositionController extends Controller
      */
     public function currentPosition(Request $request){
         $user = $request->user();
-
         $position_id = $user->positions_id;
 
         $position = UserPosition::where('id', $position_id)->first();
