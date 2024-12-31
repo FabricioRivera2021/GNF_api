@@ -7,11 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPositionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
-
-Route::middleware([EnsureFrontendRequestsAreStateful::class])->get('/sanctum/csrf-cookie', function (Request $request) {
-    return response()->json('CSRF cookie set');
-});
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/logout', [AuthController::class, 'logout']);
