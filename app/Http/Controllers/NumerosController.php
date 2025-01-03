@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\updateNumbers;
 use App\Models\Customers;
 use App\Models\Estados;
 use App\Models\Filas;
@@ -58,36 +59,89 @@ class NumerosController extends Controller
         return $numeros;
     }
 
-    public function allNumbers( $id = null ){
-        if($id && $id != 1){
-            $estado = Estados::findOrFail($id);
-            $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
-                ->whereHas('estados', function($query) { //filtrar estados que son para llamar
-                    $query->where('parallamar', 1);
-                })
-                ->where('estados_id', $estado->id)
-                ->get()
-                ->map(function($numero) {
-                    return [
-                        'numero' => $numero->numero,
-                        'fila_prefix' => $numero->filas->prefix,
-                        'fila' => $numero->filas->filas,
-                        'estado' => $numero->estados->estados,
-                        'estados_id' => $numero->estados->id,
-                        'nombre' => $numero->customers,
-                        'user' => $numero->user?->name,
-                        'pausado' => $numero->paused,
-                        'cancelado' => $numero->canceled,
-                        'created_at' => $numero->created_at,
-                        'modified_at' => $numero->updated_at
-                    ];
-                });
+    // public function allNumbers( $id = null ){
+    //     if($id && $id != 1){
+    //         $estado = Estados::findOrFail($id);
+    //         $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
+    //             ->whereHas('estados', function($query) { //filtrar estados que son para llamar
+    //                 $query->where('parallamar', 1);
+    //             })
+    //             ->where('estados_id', $estado->id)
+    //             ->get()
+    //             ->map(function($numero) {
+    //                 return [
+    //                     'numero' => $numero->numero,
+    //                     'fila_prefix' => $numero->filas->prefix,
+    //                     'fila' => $numero->filas->filas,
+    //                     'estado' => $numero->estados->estados,
+    //                     'estados_id' => $numero->estados->id,
+    //                     'nombre' => $numero->customers,
+    //                     'user' => $numero->user?->name,
+    //                     'pausado' => $numero->paused,
+    //                     'cancelado' => $numero->canceled,
+    //                     'created_at' => $numero->created_at,
+    //                     'modified_at' => $numero->updated_at
+    //                 ];
+    //             });
 
-            return $numeros;
-        }
+    //         return $numeros;
+    //     }
 
-        //para cuando el filtro sea TODOS
+    //     //para cuando el filtro sea TODOS
+    //     $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
+    //     ->get()
+    //     ->map(function($numero) {
+    //         return [
+    //             'numero' => $numero->numero,
+    //             'fila_prefix' => $numero->filas->prefix,
+    //             'fila' => $numero->filas->filas,
+    //             'estado' => $numero->estados->estados,
+    //             'estado_id' => $numero->estados->id,
+    //             'nombre' => $numero->customers,
+    //             'user' => $numero->user?->name,
+    //             'pausado' => $numero->paused,
+    //             'cancelado' => $numero->canceled,
+    //             'created_at' => $numero->created_at,
+    //             'modified_at' => $numero->updated_at
+    //         ];
+    //     });
+    
+    //     return $numeros;
+    // }
+
+    public function allNumbers($id = null){
+    if ($id && $id != 1) {
+        $estado = Estados::findOrFail($id);
         $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
+            ->whereHas('estados', function($query) {
+                $query->where('parallamar', 1); // Filter for states that are "to be called"
+            })
+            ->where('estados_id', $estado->id)
+            ->get()
+            ->map(function($numero) {
+                return [
+                    'numero' => $numero->numero,
+                    'fila_prefix' => $numero->filas->prefix,
+                    'fila' => $numero->filas->filas,
+                    'estado' => $numero->estados->estados,
+                    'estados_id' => $numero->estados->id,
+                    'nombre' => $numero->customers,
+                    'user' => $numero->user?->name,
+                    'pausado' => $numero->paused,
+                    'cancelado' => $numero->canceled,
+                    'created_at' => $numero->created_at,
+                    'modified_at' => $numero->updated_at
+                ];
+            });
+
+        // Emit the event with updated numbers
+        event(new updateNumbers($numeros));
+
+        return $numeros;
+    }
+
+    // Handle when the filter is "ALL"
+    $numeros = Numeros::with('filas', 'estados', 'customers', 'user')
         ->get()
         ->map(function($numero) {
             return [
@@ -104,9 +158,12 @@ class NumerosController extends Controller
                 'modified_at' => $numero->updated_at
             ];
         });
-    
-        return $numeros;
-    }
+
+    // Emit the event with updated numbers
+    event(new updateNumbers($numeros));
+
+    return $numeros;
+}
 
     public function createNumber(Request $request){
         $data = $request->validate([
