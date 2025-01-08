@@ -9,3 +9,5 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('numeros', function () {
     return true; // You can add authorization logic here if needed
 });
+
+Broadcast::routes(['middleware' => ['auth']]); // Use 'web' or 'auth' depending on your authentication method.
