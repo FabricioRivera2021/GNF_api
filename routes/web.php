@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Events\Example;
+use App\Events\updateNumbers;
+use App\Models\Numeros;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,3 +11,7 @@ Route::get('/', function () {
 
 // Route::post("/register", [AuthController::class, "register"]);
 // Route::post("/login", [AuthController::class, "login"]);
+
+Route::get('/broadcast', function () {
+    broadcast(new Example());
+});
