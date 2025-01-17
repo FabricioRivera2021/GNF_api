@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Example;
 use App\Events\updateNumbers;
 use App\Models\Customers;
 use App\Models\Estados;
@@ -134,9 +135,6 @@ class NumerosController extends Controller
                 ];
             });
 
-        // Emit the event with updated numbers
-        event(new updateNumbers($numeros));
-
         return $numeros;
     }
 
@@ -158,9 +156,6 @@ class NumerosController extends Controller
                 'modified_at' => $numero->updated_at
             ];
         });
-
-    // Emit the event with updated numbers
-    event(new updateNumbers($numeros));
 
     return $numeros;
 }
@@ -368,6 +363,16 @@ class NumerosController extends Controller
         $numero->user_id = $user->id; //asigna el numero al User
         $numero->estados_id = $estado->id + 1; //Le sumo 1 al estado si corresponde
         $numero->save();
+
+        //broadcast event to the TV llamador
+        broadcast(new Example(
+            $numero->numero, 
+            $fila->prefix,
+            $position->position,
+            $fila->filas, 
+            $estado->estados, 
+            $user->name
+        ));
 
         return response([
             'nro' => $numero->numero,

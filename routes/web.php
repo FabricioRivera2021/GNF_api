@@ -13,5 +13,6 @@ Route::get('/', function () {
 // Route::post("/login", [AuthController::class, "login"]);
 
 Route::get('/broadcast', function () {
-    broadcast(new Example());
+    $numeros = Numeros::all();
+    broadcast(new Example($numeros));
 });

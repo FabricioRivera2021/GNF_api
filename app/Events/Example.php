@@ -18,9 +18,17 @@ class Example implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public $data;
+    public function __construct($numero, $prefix, $position, $fila, $estado, $user)
     {
-        //
+        $this->data = [
+            'numeroTV' => $numero,
+            'prefix' => $prefix,
+            'position' => $position,
+            'fila' => $fila,
+            'estado' => $estado,
+            'user' => $user,
+        ];
     }
 
     /**
