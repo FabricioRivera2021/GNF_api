@@ -32,7 +32,7 @@ class NumerosFactory extends Factory
             'numero' => self::$counter++,
             'paused' => false,
             'canceled' => false,
-            'estados_id' => $estados_id,
+            'estados_id' => 2,
             'filas_id' => 1
         ];
     }
