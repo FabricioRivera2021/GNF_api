@@ -35,7 +35,7 @@ class AuthController extends Controller
         $user = User::where('email', $data['email'])->first();
 
         if (Auth::attempt($data) && $user) {
-            // $request->session()->regenerate();
+            $request->session()->regenerate();
             // return redirect()->intended('dashboard');
             $token = $user->createToken('auth_token')->plainTextToken;
 
