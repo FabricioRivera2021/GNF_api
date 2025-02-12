@@ -56,133 +56,171 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Medications::factory()->create([
             'lote' => '123456',
-            'fecha_vencimiento' => '2023-12-12',
+            'fecha_vencimiento' => '2023-12-31',
             'droga' => 'Paracetamol',
             'droga_concentracion' => '500mg',
             'nombre_comercial' => 'Dolex',
             'grupo_terapeutico' => 'Analgesicos_antipireticos',
             'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
             'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Pfizer'
+            'laboratorio' => 'Pfizer',
+            'stock' => 20000
         ]);
         \App\Models\Medications::factory()->create([
             'lote' => '654321',
-            'fecha_vencimiento' => '2024-06-15',
+            'fecha_vencimiento' => '2024-01-31',
             'droga' => 'Ibuprofeno',
-            'droga_concentracion' => '400mg',
+            'droga_concentracion' => '200mg',
             'nombre_comercial' => 'Advil',
             'grupo_terapeutico' => 'AINEs',
             'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
             'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Roche'
+            'laboratorio' => 'Pfizer',
+            'stock' => 15000
         ]);
-        
+
         \App\Models\Medications::factory()->create([
             'lote' => '789012',
-            'fecha_vencimiento' => '2025-08-20',
+            'fecha_vencimiento' => '2023-11-30',
             'droga' => 'Amoxicilina',
             'droga_concentracion' => '500mg',
             'nombre_comercial' => 'Amoxil',
             'grupo_terapeutico' => 'Antibioticos',
             'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
             'presentacion_farmaceutica' => 'Capsula',
-            'laboratorio' => 'Novartis'
+            'laboratorio' => 'GileadSciences',
+            'stock' => 10000
         ]);
-        
+
         \App\Models\Medications::factory()->create([
-            'lote' => '987654',
-            'fecha_vencimiento' => '2024-12-30',
-            'droga' => 'Loratadina',
-            'droga_concentracion' => '10mg',
-            'nombre_comercial' => 'Clarityne',
-            'grupo_terapeutico' => 'Antihistaminicos',
-            'unidad_medida' => 'mg',
-            'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Roche'
-        ]);
-        
-        \App\Models\Medications::factory()->create([
-            'lote' => '456789',
-            'fecha_vencimiento' => '2026-03-10',
+            'lote' => '345678',
+            'fecha_vencimiento' => '2025-05-15',
             'droga' => 'Metformina',
             'droga_concentracion' => '850mg',
             'nombre_comercial' => 'Glucophage',
             'grupo_terapeutico' => 'Hipoglucemiantesorales',
             'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
             'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Roche'
+            'laboratorio' => 'Novartis',
+            'stock' => 12000
         ]);
-        
+
+        \App\Models\Medications::factory()->create([
+            'lote' => '987654',
+            'fecha_vencimiento' => '2024-03-20',
+            'droga' => 'Loratadina',
+            'droga_concentracion' => '10mg',
+            'nombre_comercial' => 'Claritin',
+            'grupo_terapeutico' => 'Antihistaminicos',
+            'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
+            'presentacion_farmaceutica' => 'Comprimido',
+            'laboratorio' => 'Amgen',
+            'stock' => 8000
+        ]);
+
         \App\Models\Medications::factory()->create([
             'lote' => '112233',
-            'fecha_vencimiento' => '2025-01-25',
-            'droga' => 'Salbutamol',
-            'droga_concentracion' => '100mcg',
-            'nombre_comercial' => 'Ventolin',
-            'grupo_terapeutico' => 'Broncodilatadores',
-            'unidad_medida' => 'mcg',
-            'presentacion_farmaceutica' => 'Aerosol',
-            'laboratorio' => 'AbbVie'
-        ]);
-        
-        \App\Models\Medications::factory()->create([
-            'lote' => '334455',
-            'fecha_vencimiento' => '2024-09-05',
-            'droga' => 'Omeprazol',
+            'fecha_vencimiento' => '2023-10-10',
+            'droga' => 'Simvastatina',
             'droga_concentracion' => '20mg',
-            'nombre_comercial' => 'Losec',
-            'grupo_terapeutico' => 'Gastroprotectores',
-            'unidad_medida' => 'mg',
-            'presentacion_farmaceutica' => 'Capsula',
-            'laboratorio' => 'Amgen'
-        ]);
-        
-        \App\Models\Medications::factory()->create([
-            'lote' => '778899',
-            'fecha_vencimiento' => '2025-07-18',
-            'droga' => 'Diclofenaco',
-            'droga_concentracion' => '75mg',
-            'nombre_comercial' => 'Voltaren',
-            'grupo_terapeutico' => 'AINEs',
-            'unidad_medida' => 'mg',
-            'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Novartis'
-        ]);
-        
-        \App\Models\Medications::factory()->create([
-            'lote' => '223344',
-            'fecha_vencimiento' => '2026-11-12',
-            'droga' => 'Enalapril',
-            'droga_concentracion' => '10mg',
-            'nombre_comercial' => 'Renitec',
-            'grupo_terapeutico' => 'Antihipertensivos',
-            'unidad_medida' => 'mg',
-            'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Roche'
-        ]);
-        
-        \App\Models\Medications::factory()->create([
-            'lote' => '556677',
-            'fecha_vencimiento' => '2025-02-28',
-            'droga' => 'Diazepam',
-            'droga_concentracion' => '5mg',
-            'nombre_comercial' => 'Valium',
-            'grupo_terapeutico' => 'Ansioliticos_sedantes',
-            'unidad_medida' => 'mg',
-            'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Roche'
-        ]);
-        
-        \App\Models\Medications::factory()->create([
-            'lote' => '998877',
-            'fecha_vencimiento' => '2024-05-22',
-            'droga' => 'Atorvastatina',
-            'droga_concentracion' => '20mg',
-            'nombre_comercial' => 'Lipitor',
+            'nombre_comercial' => 'Zocor',
             'grupo_terapeutico' => 'Hipolipemiantes',
             'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
             'presentacion_farmaceutica' => 'Comprimido',
-            'laboratorio' => 'Pfizer'
+            'laboratorio' => 'Pfizer',
+            'stock' => 5000
+        ]);
+
+        \App\Models\Medications::factory()->create([
+            'lote' => '445566',
+            'fecha_vencimiento' => '2024-07-25',
+            'droga' => 'Omeprazol',
+            'droga_concentracion' => '20mg',
+            'nombre_comercial' => 'Prilosec',
+            'grupo_terapeutico' => 'Gastroprotectores',
+            'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
+            'presentacion_farmaceutica' => 'Capsula',
+            'laboratorio' => 'AbbVie',
+            'stock' => 7000
+        ]);
+
+        \App\Models\Medications::factory()->create([
+            'lote' => '778899',
+            'fecha_vencimiento' => '2025-02-28',
+            'droga' => 'Atenolol',
+            'droga_concentracion' => '50mg',
+            'nombre_comercial' => 'Tenormin',
+            'grupo_terapeutico' => 'Antihipertensivos',
+            'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
+            'presentacion_farmaceutica' => 'Comprimido',
+            'laboratorio' => 'AstraZeneca',
+            'stock' => 6000
+        ]);
+
+        \App\Models\Medications::factory()->create([
+            'lote' => '998877',
+            'fecha_vencimiento' => '2023-09-15',
+            'droga' => 'Levotiroxina',
+            'droga_concentracion' => '100mcg',
+            'nombre_comercial' => 'Synthroid',
+            'grupo_terapeutico' => 'Hormonas_analogos',
+            'unidad_medida' => 'mcg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
+            'presentacion_farmaceutica' => 'Comprimido',
+            'laboratorio' => 'Roche',
+            'stock' => 9000
+        ]);
+
+        \App\Models\Medications::factory()->create([
+            'lote' => '223344',
+            'fecha_vencimiento' => '2024-06-30',
+            'droga' => 'Amlodipino',
+            'droga_concentracion' => '5mg',
+            'nombre_comercial' => 'Norvasc',
+            'grupo_terapeutico' => 'Antihipertensivos',
+            'unidad_medida' => 'mg',
+            'via_administracion' => 'Oral',
+            'tipo_medicamento' => 'Generico',
+            'estado' => 'Activo',
+            'ranurable' => 'No',
+            'presentacion_farmaceutica' => 'Comprimido',
+            'laboratorio' => 'Pfizer',
+            'stock' => 11000
         ]);
 
         \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);

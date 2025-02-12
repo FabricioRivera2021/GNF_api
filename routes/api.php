@@ -2,6 +2,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
+use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\NumerosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPositionController;
@@ -47,3 +48,5 @@ Route::post("/changePosition/{id?}", [UserPositionController::class, "changeUser
 
 Route::get("/allFilas", [FilasController::class, "allFilas"]);
 Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAllPosition"]);
+
+Route::get("/allMedications", [MedicationsController::class, "index"]);

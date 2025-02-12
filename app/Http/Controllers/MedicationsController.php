@@ -12,7 +12,7 @@ class MedicationsController extends Controller
      */
     public function index()
     {
-        //
+        return Medications::all();
     }
 
     /**

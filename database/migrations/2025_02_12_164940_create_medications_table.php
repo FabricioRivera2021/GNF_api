@@ -53,6 +53,59 @@ return new class extends Migration
                 'puff',
                 'ui',
             ]);
+            $table->enum('via_administracion', [
+                'Oral',
+                'Sublingual',
+                'Rectal',
+                'Vaginal',
+                'Oftalmica',
+                'Otica',
+                'Nasal',
+                'Inhalatoria',
+                'Topica',
+                'Transdermica',
+                'Intramuscular',
+                'Intravenosa',
+                'Subcutanea',
+                'Intradermica',
+                'Intratecal',
+                'Intraarticular',
+                'Intracardiaca',
+                'Intracavernosa',
+                'Intracavitaria',
+                'Intracorneal',
+                'Intrafolicular',
+                'Intrahepatica',
+                'Intralinfatica',
+                'Intraperitoneal',
+                'Intrapleural',
+                'Intraraquidea',
+                'Intratimpanica',
+                'Intravesical',
+                'Intraventricular',
+                'Intravaginal',
+                'Intravitrea',
+                'Intracoronaria',
+            ]);
+            $table->enum('tipo_medicamento', [
+                'Generico',
+                'Referencia',
+                'Comercial',
+                'Controlado',
+                'AltoCosto',
+                'Hospitalario',
+                'Otro'
+            ]);
+            $table->enum('estado', [
+                'Activo',
+                'Inactivo',
+                'Suspendido',
+                'Retirado'
+            ]);
+            $table->enum('ranurable', [
+                'Si',
+                'No',
+            ]);
             $table->enum('presentacion_farmaceutica', [
                 'Tableta',
                 'Capsula',
@@ -86,7 +139,9 @@ return new class extends Migration
                 'AbbVie',
                 'GileadSciences',
                 'Amgen',
+                'AztraZeneca',
             ]);
+            $table->unsignedBigInteger('stock');
             $table->timestamps();
         });
     }
