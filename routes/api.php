@@ -21,9 +21,7 @@ Route::post("/login", [AuthController::class, "login"]);
 // Route::post("/logout", [AuthController::class, "logout"]);
 
 Route::get("/dashboard");
-
 Route::get("/usersInPositions", [UserController::class, "usersInPositions"]);
-
 Route::get("/isProcesingNumber", [NumerosController::class, "userIsProcesingNumber"]);
 
 Route::post("/createNumber", [NumerosController::class, "createNumber"]);
