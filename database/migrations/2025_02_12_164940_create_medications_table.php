@@ -139,7 +139,7 @@ return new class extends Migration
                 'AbbVie',
                 'GileadSciences',
                 'Amgen',
-                'AztraZeneca',
+                'AstraZeneca',
             ]);
             $table->unsignedBigInteger('stock');
             $table->timestamps();

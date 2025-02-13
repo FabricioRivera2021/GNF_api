@@ -223,8 +223,20 @@ class DatabaseSeeder extends Seeder
             'stock' => 11000
         ]);
 
+        //medicos
         \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);
         \App\Models\Medicos::factory()->create(['nombre' => 'Jose','apellido' => 'Guerra','nro_caja' => 111111,'especialidad' => 'MedicinaCritica']);
         \App\Models\Medicos::factory()->create(['nombre' => 'Maria','apellido' => 'Perez','nro_caja' => 222222,'especialidad' => 'MedicinaDeRehabilitacion']);
+        
+        //tramtamiento
+        \App\Models\Tratamientos::factory()->create([
+            'fecha_inicio' => '2023-01-01',
+            'fecha_fin' => '2023-02-02',
+            'medicos_id' => 1,
+            'medication_id' => 1,
+            'total_tto' => 30,
+            'retiros_pendientes' => 1,
+            'retiros_por_mes' => 1
+        ]);
     }
 }
