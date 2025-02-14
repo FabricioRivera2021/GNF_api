@@ -232,11 +232,47 @@ class DatabaseSeeder extends Seeder
         \App\Models\Tratamientos::factory()->create([
             'fecha_inicio' => '2023-01-01',
             'fecha_fin' => '2023-02-02',
+            'tto_dias_mes' => 7,
             'medicos_id' => 1,
             'medication_id' => 1,
-            'total_tto' => 30,
+            'customer_id' => 1,
+            'user_id' => 1,
+            'activo' => 1,
+            'total_tto_dias' => 7,
+            'total_tto_dias_pendientes' => 5,
+            'tipo_tto' => 'agudo',
+            'retiros_por_mes' => 1,
             'retiros_pendientes' => 1,
-            'retiros_por_mes' => 1
+        ]);
+        \App\Models\Tratamientos::factory()->create([
+            'fecha_inicio' => '2023-02-01',
+            'fecha_fin' => '2023-04-02',
+            'tto_dias_mes' => 30,
+            'medicos_id' => 2,
+            'medication_id' => 2,
+            'customer_id' => 1,
+            'user_id' => 1,
+            'activo' => 1,
+            'total_tto_dias' => 60,
+            'total_tto_dias_pendientes' => 45,
+            'tipo_tto' => 'cronico',
+            'retiros_por_mes' => 1,
+            'retiros_pendientes' => 1,
+        ]);
+        \App\Models\Tratamientos::factory()->create([
+            'fecha_inicio' => '2023-02-01',
+            'fecha_fin' => '2023-05-02',
+            'tto_dias_mes' => 90,
+            'medicos_id' => 2,
+            'medication_id' => 4,
+            'customer_id' => 1,
+            'user_id' => 1,
+            'activo' => 1,
+            'total_tto_dias' => 90,
+            'total_tto_dias_pendientes' => 20,
+            'tipo_tto' => 'cronico',
+            'retiros_por_mes' => 1,
+            'retiros_pendientes' => 1,
         ]);
     }
 }

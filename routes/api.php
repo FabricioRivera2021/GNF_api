@@ -4,6 +4,7 @@ use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
 use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\NumerosController;
+use App\Http\Controllers\TratamientosController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPositionController;
 use Illuminate\Http\Request;
@@ -49,4 +50,8 @@ Route::post("/changePosition/{id?}", [UserPositionController::class, "changeUser
 Route::get("/allFilas", [FilasController::class, "allFilas"]);
 Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAllPosition"]);
 
+//medicamentos
 Route::get("/allMedications", [MedicationsController::class, "index"]);
+
+//tratamientos
+Route::get("/allTreatments/{id?}", [TratamientosController::class, "show"]);
