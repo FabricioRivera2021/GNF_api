@@ -34,10 +34,10 @@ class TratamientosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tratamientos $tratamientos)
+    public function show(Request $request)
     {
-        //muestra todos los tratamientos para un usuario en particular
-        $tratamientos = Tratamientos::where('customer_id', 1)->get();
+        /* Trae los tratamientos de un customer con, la medicacion, el medico y el usuatio que creo el tratamiento */
+        $tratamientos = Tratamientos::with('medication', 'medicos', 'user')->where('customer_id', $request->id)->get();
 
         return $tratamientos;
     }

@@ -13,4 +13,10 @@ class Customers extends Model
     {
         return $this->BelongsTo(Numeros::class);
     }
+
+    //un customer puede tener muchos tratamientos
+    public function tratamientos()
+    {
+        return $this->hasMany(Tratamientos::class);
+    }
 }

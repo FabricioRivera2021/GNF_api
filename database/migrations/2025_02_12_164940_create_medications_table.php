@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('droga');
             $table->string('droga_concentracion');
             $table->string('nombre_comercial');
+            $table->string('unidades_caja');
             $table->enum('grupo_terapeutico', [
                 'Analgesicos_antipireticos',
                 'AINEs',
@@ -95,6 +96,14 @@ return new class extends Migration
                 'AltoCosto',
                 'Hospitalario',
                 'Otro'
+            ]);
+            $table->enum('receta', [
+                'Si',
+                'No',
+            ]);
+            $table->enum('refrigeracion', [
+                'Si',
+                'No',
             ]);
             $table->enum('estado', [
                 'Activo',

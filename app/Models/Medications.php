@@ -9,4 +9,10 @@ class Medications extends Model
 {
     use HasFactory;
     //
+
+    //puede estar en muchos tratamientos
+    public function tratamientos()
+    {
+        return $this->hasMany(Tratamientos::class);
+    }
 }

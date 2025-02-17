@@ -62,4 +62,10 @@ class User extends Authenticatable
     {
         return $this->BelongsTo(UserPosition::class);
     }
+
+    //creo muchos tratamientos
+    public function tratamientos()
+    {
+        return $this->hasMany(Tratamientos::class);
+    }
 }
