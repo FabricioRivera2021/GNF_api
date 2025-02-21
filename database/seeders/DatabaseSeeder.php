@@ -324,5 +324,20 @@ class DatabaseSeeder extends Seeder
             'retiros_por_mes' => 1,
             'retiros_pendientes' => 1,
         ]);
+        \App\Models\HistorialRetiros::factory()->create([
+            'tto_id' => 1,
+            'user_id' => 1,
+            'fecha_retiro' => '2023-01-01'
+        ]);
+        \App\Models\HistorialRetiros::factory()->create([
+            'tto_id' => 2,
+            'user_id' => 1,
+            'fecha_retiro' => '2023-02-01'
+        ]);
+        \App\Models\HistorialRetiros::factory()->create([
+            'tto_id' => 3,
+            'user_id' => 1,
+            'fecha_retiro' => '2023-02-01'
+        ]);
     }
 }
