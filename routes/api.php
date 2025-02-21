@@ -55,3 +55,6 @@ Route::get("/allMedications", [MedicationsController::class, "index"]);
 
 //tratamientos
 Route::get("/allTreatments/{id?}", [TratamientosController::class, "show"]);
+
+//historico de retiros
+Route::get("/allRetiros", [NumerosController::class, "allRetiros"]);

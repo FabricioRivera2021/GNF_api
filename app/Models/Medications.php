@@ -15,4 +15,9 @@ class Medications extends Model
     {
         return $this->hasMany(Tratamientos::class);
     }
+
+    //una medicacion puede estar en muchos registros de retiros
+    public function retiros(){
+        return $this->hasMany(HistorialRetiros::class);
+    }
 }

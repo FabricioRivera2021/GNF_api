@@ -326,16 +326,19 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\HistorialRetiros::factory()->create([
             'tto_id' => 1,
+            'customer_id' => 1,
             'user_id' => 1,
             'fecha_retiro' => '2023-01-01'
         ]);
         \App\Models\HistorialRetiros::factory()->create([
             'tto_id' => 2,
+            'customer_id' => 1,
             'user_id' => 1,
             'fecha_retiro' => '2023-02-01'
         ]);
         \App\Models\HistorialRetiros::factory()->create([
             'tto_id' => 3,
+            'customer_id' => 1,
             'user_id' => 1,
             'fecha_retiro' => '2023-02-01'
         ]);

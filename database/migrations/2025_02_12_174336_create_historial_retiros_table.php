@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('historial_retiros', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tto_id');
+            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('user_id');
             $table->date('fecha_retiro');
             $table->timestamps();
+            $table->foreign('customer_id')->references('id')->on('customers')
+            ->onDelete('cascade');
             $table->foreign('tto_id')->references('id')->on('tratamientos')
             ->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')

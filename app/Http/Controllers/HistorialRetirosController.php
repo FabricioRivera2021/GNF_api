@@ -34,9 +34,12 @@ class HistorialRetirosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(HistorialRetiros $historialRetiros)
+    public function show(Request $request)
     {
-        //
+        //muestra todos los retiros de un customer
+        $retiros = HistorialRetiros::with('medication', 'medicos', 'user')->where('customer_id', $request->id)->get();
+
+        return $retiros;
     }
 
     /**
