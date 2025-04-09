@@ -3,6 +3,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
 use App\Http\Controllers\MedicationsController;
+use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\NumerosController;
 use App\Http\Controllers\TratamientosController;
 use App\Http\Controllers\UserController;
@@ -52,6 +53,9 @@ Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAll
 
 //medicamentos
 Route::get("/allMedications", [MedicationsController::class, "index"]);
+
+//medicos
+Route::get("/allMedicos", [MedicosController::class, "index"]);
 
 //tratamientos
 Route::get("/allTreatments/{id?}", [TratamientosController::class, "show"]);

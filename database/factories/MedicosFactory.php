@@ -14,10 +14,38 @@ class MedicosFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            //
+            'nombre' => $this->faker->firstName,
+            'apellido' => $this->faker->lastName,
+            'nro_caja' => $this->faker->unique()->numberBetween(100000, 999999),
+            'especialidad' => $this->faker->randomElement([
+              'Inmunologia',
+              'MedicinaCritica',
+              'MedicinaDeRehabilitacion',
+              'MedicinaDeportiva',
+              'MedicinaFamiliar',
+              'MedicinaForense',
+              'MedicinaInterna',
+              'MedicinaNuclear',
+              'Nefrologia',
+              'Neumologia',
+              'Neurologia',
+              'Neurocirugia',
+              'Nutriologia',
+              'Obstetricia',
+              'Oftalmologia',
+              'Oncologia',
+              'Ortopedia',
+              'Otorrinolaringologia',
+              'Pediatria',
+              'Psiquiatria',
+              'Radiologia',
+              'Reumatologia',
+              'Traumatologia',
+              'Urologia'
+            ]),
         ];
     }
 }

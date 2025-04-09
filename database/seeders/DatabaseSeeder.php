@@ -274,9 +274,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //medicos
-        \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);
-        \App\Models\Medicos::factory()->create(['nombre' => 'Jose','apellido' => 'Guerra','nro_caja' => 111111,'especialidad' => 'MedicinaCritica']);
-        \App\Models\Medicos::factory()->create(['nombre' => 'Maria','apellido' => 'Perez','nro_caja' => 222222,'especialidad' => 'MedicinaDeRehabilitacion']);
+        // \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);
+        \App\Models\Medicos::factory()->count(10)->create();
         
         //tramtamiento
         \App\Models\Tratamientos::factory()->create([
