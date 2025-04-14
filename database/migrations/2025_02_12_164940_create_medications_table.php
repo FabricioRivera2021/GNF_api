@@ -44,7 +44,14 @@ return new class extends Migration
                 'Anticonvulsivantes',
                 'Relajantesmusculares',
                 'Hormonas_analogos',
-                'Gastroprotectores'
+                'Gastroprotectores',
+                'Antiemeticos',
+                'Antidiarreicos',
+                'Laxantes',
+                'Antiasmaticos',
+                'Antiplaquetarios',
+                'Anticoagulantes',
+                'Vasodilatadores'
             ]);
             $table->enum('unidad_medida', [
                 'g',
@@ -149,6 +156,22 @@ return new class extends Migration
                 'GileadSciences',
                 'Amgen',
                 'AstraZeneca',
+                'BoerhingerIngelheim',
+                'BristolMyersSquibb',
+                'EliLilly',
+                'Johnson&Johnson',
+                'Merck',
+                'Sanofi',
+                'GlaxoSmithKline',
+                'Bayer',
+                'Takeda',
+                'Mylan',
+                'Teva',
+                'Sandoz',
+                'AurobindoPharma',
+                'Cipla',
+                'Forest Laboratories',
+                'Eli Lilly'
             ]);
             $table->unsignedBigInteger('stock');
             $table->timestamps();
