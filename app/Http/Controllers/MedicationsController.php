@@ -12,7 +12,8 @@ class MedicationsController extends Controller
      */
     public function index()
     {
-        return Medications::all();
+        //devuelve toda la medicacion ordenada por droga
+        return Medications::orderBy('droga', 'ASC')->get();
     }
 
     /**

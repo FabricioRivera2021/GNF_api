@@ -19,7 +19,7 @@ class TratamientosFactory extends Factory
         $isShortTreatment = $this->faker->boolean(50);
         $totalDays = $isShortTreatment
             ? $this->faker->numberBetween(1, 30)
-            : $this->faker->numberBetween(30, 180); // 1 to 6 months
+            : $this->faker->randomElement([30, 60, 90, 120, 150, 180]); // 1 to 6 months
         $startDate = $this->faker->dateTimeBetween('-1 year', 'now');
         $endDate = (clone $startDate)->modify("+{$totalDays} days");
         $ttoDiasMes = $this->faker->numberBetween(1, 10);
