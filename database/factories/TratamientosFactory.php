@@ -38,6 +38,8 @@ class TratamientosFactory extends Factory
             'activo' => $this->faker->boolean(80),
             'total_tto_dias' => $totalDays,
             'total_tto_dias_pendientes' => $diasPendientes,
+            'frecuencia' => $this->faker->randomElement([24, 12, 8, 6, 4, 3]),
+            'cantidad_diaria' => $this->faker->numberBetween(1, 4),
             'tipo_tto' => $this->faker->randomElement(['crónico']),
             'retiros_por_mes' => $retirosMes,
             'retiros_pendientes' => $retirosPendientes,

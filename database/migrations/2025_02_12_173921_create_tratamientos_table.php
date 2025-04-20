@@ -15,17 +15,19 @@ return new class extends Migration
             $table->id();
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
-            $table->unsignedBigInteger('tto_dias_mes');
+            $table->unsignedBigInteger('tto_dias_mes');//quizas no sea necesario
             $table->unsignedBigInteger('medicos_id');
             $table->unsignedBigInteger('medication_id');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('user_id');
             $table->boolean('activo');
             $table->unsignedBigInteger('total_tto_dias');
-            $table->unsignedBigInteger('total_tto_dias_pendientes');
+            $table->unsignedBigInteger('total_tto_dias_pendientes');//quizas no sea necesario
             $table->unsignedBigInteger('retiros_por_mes');
             $table->unsignedBigInteger('retiros_pendientes');
             $table->enum('tipo_tto', ['cronico', 'agudo', 'FNR', 'compra_especial']);
+            $table->unsignedTinyInteger('frecuencia');
+            $table->unsignedBigInteger('cantidad_diaria');//cantidad de comp/ml/puff/gotas que toma por dia
             $table->timestamps();
             $table->foreign('medicos_id')->references('id')->on('medicos')
             ->onDelete('cascade');

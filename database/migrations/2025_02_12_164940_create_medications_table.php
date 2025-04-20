@@ -54,12 +54,15 @@ return new class extends Migration
                 'Vasodilatadores'
             ]);
             $table->enum('unidad_medida', [
-                'g',
+                'Gr',
                 'mg',
+                'mg/ml',
+                'g/ml',
                 'ml',
                 'mcg',
                 'puff',
                 'ui',
+                'gts'
             ]);
             $table->enum('via_administracion', [
                 'Oral',
