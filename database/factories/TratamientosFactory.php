@@ -35,7 +35,7 @@ class TratamientosFactory extends Factory
             'medication_id' => $this->faker->numberBetween(1, 10),
             'customer_id' => 1,
             'user_id' => $this->faker->numberBetween(1, 5),
-            'activo' => $this->faker->boolean(80),
+            'activo' => ($endDate > now()) ? true : false,
             'total_tto_dias' => $totalDays,
             'total_tto_dias_pendientes' => $diasPendientes,
             'frecuencia' => $this->faker->randomElement([24, 12, 8, 6, 4, 3]),
