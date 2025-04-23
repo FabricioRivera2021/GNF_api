@@ -29,14 +29,11 @@ return new class extends Migration
             $table->unsignedTinyInteger('frecuencia');
             $table->unsignedBigInteger('cantidad_diaria');//cantidad de comp/ml/puff/gotas que toma por dia
             $table->timestamps();
-            $table->foreign('medicos_id')->references('id')->on('medicos')
-            ->onDelete('cascade');
-            $table->foreign('medication_id')->references('id')->on('medications')
-            ->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')
-            ->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade');
+            //references
+            $table->foreign('medicos_id')->references('id')->on('medicos')->onDelete('cascade');
+            $table->foreign('medication_id')->references('id')->on('medications')->onDelete('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

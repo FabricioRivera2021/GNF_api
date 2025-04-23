@@ -32,7 +32,7 @@ class TratamientosFactory extends Factory
             'fecha_fin' => $endDate->format('Y-m-d'),
             'tto_dias_mes' => $ttoDiasMes,
             'medicos_id' => $this->faker->numberBetween(1, 10),
-            'medication_id' => $this->faker->numberBetween(1, 10),
+            'medication_id' => $this->faker->numberBetween(1, 3),
             'customer_id' => 1,
             'user_id' => $this->faker->numberBetween(1, 5),
             'activo' => ($endDate > now()) ? true : false,
