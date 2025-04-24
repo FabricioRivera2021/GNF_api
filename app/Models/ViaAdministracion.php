@@ -9,4 +9,9 @@ class ViaAdministracion extends Model
 {
     /** @use HasFactory<\Database\Factories\ViaAdministracionFactory> */
     use HasFactory;
+
+    public function medication()
+    {
+        return $this->belongsToMany(Medications::class);
+    }
 }

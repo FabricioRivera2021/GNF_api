@@ -27,4 +27,12 @@ class Medications extends Model
             GrupoTerapeutico::class, 'grupo_terapeutico_medications', 'medication_id', 'grupo_terapeutico_id'
         );
     }
+
+    public function via_administracion()
+    {
+        return $this->belongsToMany(
+            // Related model          //pivot table name                // foreign key for this model  // Foreign key for related model
+            ViaAdministracion::class, 'via_administracion_medications', 'medication_id',               'via_administracion_id'
+        );
+    }
 }
