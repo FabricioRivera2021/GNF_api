@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
 
+        \App\Models\Especialidad::factory(10)->create();
+
         // \App\Models\User::factory(10)->create();
         \App\Models\Roles::factory()->create(['roles' => 'admin']);
         \App\Models\Roles::factory()->create(['roles' => 'regular']);

@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medicos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->string('apellido');
-            $table->unsignedBigInteger('nro_caja');
-            $table->timestamps();
-        });
+      Schema::create('especialidad_medicos', function (Blueprint $table) {
+        $table->foreignId('medicos_id')->constrained('medicos')->onDelete('cascade');
+        $table->foreignId('especialidad_id')->constrained('especialidades')->onDelete('cascade');
+        $table->primary(['medicos_id', 'especialidad_id']);
+      });
     }
 
     /**
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medicos');
+        //
     }
 };

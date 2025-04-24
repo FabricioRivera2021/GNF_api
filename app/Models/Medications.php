@@ -47,4 +47,10 @@ class Medications extends Model
     {
         return $this->belongsTo(Categoria::class);
     }
+
+    // una medicacion tiene una presentacion farmaceutica
+    public function presentacion_farmaceutica()
+    {
+        return $this->belongsTo(PresentacionFarmaceutica::class);
+    }
 }

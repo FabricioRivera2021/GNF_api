@@ -15,4 +15,10 @@ class Medicos extends Model
     {
         return $this->hasMany(Tratamientos::class);
     }
+
+    //puede tener varias especialidades
+    public function especialidades()
+    {
+        return $this->belongsToMany(Especialidad::class);
+    }
 }

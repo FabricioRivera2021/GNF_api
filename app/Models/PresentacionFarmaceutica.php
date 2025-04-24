@@ -9,4 +9,10 @@ class PresentacionFarmaceutica extends Model
 {
     /** @use HasFactory<\Database\Factories\PresentacionFarmaceuticaFactory> */
     use HasFactory;
+
+    //una presentacion farmaceutica puede estar en muchas medicaciones
+    public function medications()
+    {
+        return $this->hasMany(Medications::class);
+    }
 }
