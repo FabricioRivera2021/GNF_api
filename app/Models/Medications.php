@@ -20,4 +20,11 @@ class Medications extends Model
     public function retiros(){
         return $this->hasMany(HistorialRetiros::class);
     }
+
+    public function grupos_terapeuticos()
+    {
+        return $this->belongsToMany(
+            GrupoTerapeutico::class, 'grupo_terapeutico_medications', 'medication_id', 'grupo_terapeutico_id'
+        );
+    }
 }

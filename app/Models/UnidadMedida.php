@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Presentacion_farmaceutica extends Model
+class UnidadMedida extends Model
 {
-    /** @use HasFactory<\Database\Factories\PresentacionFarmaceuticaFactory> */
+    /** @use HasFactory<\Database\Factories\UnidadMedidaFactory> */
     use HasFactory;
 }

@@ -37,7 +37,6 @@ return new class extends Migration
                 'Si',
                 'No',
             ]);
-            $table->unsignedBigInteger('grupo_terapeuticos_id');
             $table->unsignedBigInteger('unidad_medida_id');
             $table->unsignedBigInteger('via_administracion_id');
             $table->unsignedBigInteger('categoria_id');
@@ -47,7 +46,6 @@ return new class extends Migration
             $table->timestamps();
 
             //references
-            $table->foreign('grupo_terapeuticos_id')->references('id')->on('grupo_terapeuticos')->onDelete('cascade');
             $table->foreign('unidad_medida_id')->references('id')->on('unidad_medidas')->onDelete('cascade');
             $table->foreign('via_administracion_id')->references('id')->on('via_administracions')->onDelete('cascade');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');

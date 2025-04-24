@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Unidad_medida;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -21,6 +22,8 @@ class DatabaseSeeder extends Seeder
           PresentacionFarmaceuticaSeeder::class,
           GrupoTerapeuticoSeeder::class
         ]);
+
+        \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
 
         // \App\Models\User::factory(10)->create();
         \App\Models\Roles::factory()->create(['roles' => 'admin']);
@@ -70,7 +73,6 @@ class DatabaseSeeder extends Seeder
             'droga_concentracion' => '500mg',
             'nombre_comercial' => 'Dolex',
             'unidades_caja' => 100,
-            'grupo_terapeuticos_id' => 1,
             'unidad_medida_id' => 1,
             'via_administracion_id' => 1,
             'categoria_id' => 1,
@@ -89,7 +91,6 @@ class DatabaseSeeder extends Seeder
             'droga_concentracion' => '200mg',
             'nombre_comercial' => 'Advil',
             'unidades_caja' => 30,
-            'grupo_terapeuticos_id' => 1,
             'unidad_medida_id' => 1,
             'via_administracion_id' => 1,
             'categoria_id' => 1,
@@ -108,7 +109,6 @@ class DatabaseSeeder extends Seeder
             'droga_concentracion' => '500mg',
             'nombre_comercial' => 'Amoxil',
             'unidades_caja' => 30,
-            'grupo_terapeuticos_id' => 3,
             'unidad_medida_id' => 1,
             'via_administracion_id' => 1,
             'categoria_id' => 1,

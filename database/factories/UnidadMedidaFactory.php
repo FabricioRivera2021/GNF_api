@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Unidad_medida;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
