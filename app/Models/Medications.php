@@ -35,4 +35,10 @@ class Medications extends Model
             ViaAdministracion::class, 'via_administracion_medications', 'medication_id',               'via_administracion_id'
         );
     }
+
+    // una medicacion tiene una unidad de medida
+    public function unidad_medida()
+    {
+        return $this->belongsTo(UnidadMedida::class);
+    }
 }
