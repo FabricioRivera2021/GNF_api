@@ -9,4 +9,10 @@ class Categoria extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoriaFactory> */
     use HasFactory;
+
+    //one category can be in many medications
+    public function medications()
+    {
+        return $this->hasMany(Medications::class);
+    }
 }

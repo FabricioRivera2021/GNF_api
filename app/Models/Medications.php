@@ -41,4 +41,10 @@ class Medications extends Model
     {
         return $this->belongsTo(UnidadMedida::class);
     }
+
+    // una medicacion tiene una categoria
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
+    }
 }
