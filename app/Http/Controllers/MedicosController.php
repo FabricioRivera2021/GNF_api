@@ -12,7 +12,7 @@ class MedicosController extends Controller
      */
     public function index()
     {
-        return Medicos::all();
+        return Medicos::with('especialidades')->get();
     }
 
     /**

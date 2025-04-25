@@ -53,4 +53,10 @@ class Medications extends Model
     {
         return $this->belongsTo(PresentacionFarmaceutica::class);
     }
+
+    // una medicacion tiene un laboratorio
+    public function laboratorio()
+    {
+        return $this->belongsTo(Laboratorio::class);
+    }
 }

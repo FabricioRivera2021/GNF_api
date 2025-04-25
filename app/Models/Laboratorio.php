@@ -9,4 +9,10 @@ class Laboratorio extends Model
 {
     /** @use HasFactory<\Database\Factories\LaboratorioFactory> */
     use HasFactory;
+
+    // un laboratorio tiene muchas medicaciones
+    public function medicaciones()
+    {
+        return $this->hasMany(Medications::class);
+    }
 }
