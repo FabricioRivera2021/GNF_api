@@ -59,6 +59,7 @@ Route::get("/allMedicos", [MedicosController::class, "index"]);
 
 //tratamientos
 Route::get("/allTreatments/{id?}", [TratamientosController::class, "show"]);
+Route::post("/createTreatment", [TratamientosController::class, "store"]);
 
 //historico de retiros
 Route::get("/allRetiros", [NumerosController::class, "allRetiros"]);
