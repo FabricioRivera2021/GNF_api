@@ -38,10 +38,7 @@ class TratamientosController extends Controller
     public function show(Request $request)
     {
         /* Trae los tratamientos de un customer con, la medicacion, el medico y el usuatio que creo el tratamiento */
-<<<<<<< HEAD
         /* -- */
-=======
->>>>>>> 003c9771aefe9d0894635e908b35386b92cd54b1
         $tratamientos = Tratamientos::with('medication', 'medicos.especialidades', 'user')
                         ->where('customer_id', $request->id)
                         ->orderBy('fecha_inicio', 'desc')
