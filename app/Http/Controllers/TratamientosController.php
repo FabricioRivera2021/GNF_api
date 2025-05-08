@@ -29,7 +29,34 @@ class TratamientosController extends Controller
     public function store(Request $request)
     {
         //stores a new treatment
-        dd($request->all());
+        //return the data from the request
+        // $tratamiento = Tratamientos::create([
+        //     // 'customer_id' => $request->customerID,
+        //     'medication_id' => $request->medicationID,
+        //     // 'medico_id' => $request->medicoID,
+        //     // 'user_id' => $request->user_id,
+        //     'fecha_inicio' => $request->startDate,
+        //     'fecha_fin' => $request->endDate,
+        //     'frecuencia' => $request->interval,
+        //     'treatment' => $request->treatmentDays,
+        //     // 'observaciones' => $request->observaciones
+        // ]);
+
+        return response()->json([
+            'message' => 'Tratamiento creado correctamente',
+            'tratamiento' => [
+                // 'customer_id' => $request->tratamiento->customerID,
+                'medication_id' => $request->tratamiento["medicationID"],
+                'medico_id' => $request->tratamiento["medicoID"],
+                // 'user_id' => $request->tratamiento->user_id,
+                'fecha_inicio' => $request->tratamiento["startDate"],
+                'fecha_fin' => $request->tratamiento["endDate"],
+                'frecuencia' => $request->tratamiento["interval"],
+                'treatment' => $request->tratamiento["treatmentDays"],
+                // 'observaciones' => $request->observaciones
+            ]
+        ], 201);
+        //return $tratamiento;
     }
 
     /**

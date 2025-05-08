@@ -10,6 +10,10 @@ class Tratamientos extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'customer_id', 'medication_id', 'medico_id', 'user_id', 'fecha_inicio', 'fecha_fin', 'frecuencia', 'treatment', 'observaciones'
+    ];
+
     //tiene una medicacion
     public function medication(): BelongsTo
     {
