@@ -11,7 +11,23 @@ class Tratamientos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'customer_id', 'medication_id', 'medico_id', 'user_id', 'fecha_inicio', 'fecha_fin', 'frecuencia', 'treatment', 'observaciones'
+        'customer_id', 
+        'medication_id', 
+        'medicos_id', 
+        'user_id', 
+        'activo',
+        'tto_dias',
+        'total_tto_dias',
+        'fecha_inicio', 
+        'fecha_fin', 
+        'frecuencia', 
+        'treatment', 
+        'observaciones',
+        'tto_dias_mes',
+        'total_tto_dias_pendientes',
+        'retiros_por_mes',
+        'retiros_pendientes',
+        'cantidad_diaria'
     ];
 
     //tiene una medicacion

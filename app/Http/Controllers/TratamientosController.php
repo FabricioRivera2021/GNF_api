@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tratamientos;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TratamientosController extends Controller
@@ -29,34 +30,61 @@ class TratamientosController extends Controller
     public function store(Request $request)
     {
         //stores a new treatment
-        //return the data from the request
-        // $tratamiento = Tratamientos::create([
-        //     // 'customer_id' => $request->customerID,
-        //     'medication_id' => $request->medicationID,
-        //     // 'medico_id' => $request->medicoID,
-        //     // 'user_id' => $request->user_id,
-        //     'fecha_inicio' => $request->startDate,
-        //     'fecha_fin' => $request->endDate,
-        //     'frecuencia' => $request->interval,
-        //     'treatment' => $request->treatmentDays,
-        //     // 'observaciones' => $request->observaciones
-        // ]);
+        //validate the request
+        $validated = $request->validate([
+          'tratamiento.startDate' => 'required|date',
+          'tratamiento.endDate' => 'required|date',
+          'tratamiento.ttoDiaMes' => 'required|integer',
+          'tratamiento.medicoID' => 'required|integer',
+          'tratamiento.medicationID' => 'required|integer',
+          'tratamiento.customerID' => 'required|integer',
+          'tratamiento.userID' => 'required|integer',
+          'tratamiento.activo' => 'required|boolean',
+          'tratamiento.treatmentDays' => 'required|integer',
+          'tratamiento.totalDiasPendientes' => 'required|integer',
+          'tratamiento.retirosPorMes' => 'required|integer',
+          'tratamiento.retirosPendientes' => 'required|integer',
+          'tratamiento.tipoTto' => 'required|string',
+          'tratamiento.frecuencia' => 'required|integer',
+          'tratamiento.cantidadDiaria' => 'required|integer',
+          // 'tratamiento.numero' => 'required|object' // Uncomment if needed
+        ]);
 
-        return response()->json([
+        $startDate = Carbon::parse($validated['tratamiento']['startDate'])->format('Y-m-d H:i:s');
+        $endDate = Carbon::parse($validated['tratamiento']['endDate'])->format('Y-m-d H:i:s');
+
+        //create a new treatment
+        $tratamiento = Tratamientos::create([
+          'customer_id' => $validated['tratamiento']['customerID'],
+          'medicos_id' => $validated['tratamiento']['medicoID'],
+          'medication_id' => $validated['tratamiento']['medicationID'],
+          'user_id' => $validated['tratamiento']['userID'],
+          'fecha_inicio' => $startDate,
+          'fecha_fin' => $endDate,
+          'tto_dias_mes' => $validated['tratamiento']['ttoDiaMes'],
+          'activo' => $validated['tratamiento']['activo'],
+          'total_tto_dias' => $validated['tratamiento']['treatmentDays'],
+          'total_tto_dias_pendientes' => $validated['tratamiento']['totalDiasPendientes'],
+          'retiros_pendientes' => $validated['tratamiento']['retirosPendientes'],
+          'retiros_por_mes' => $validated['tratamiento']['retirosPorMes'],
+          'tipo_tto' => $validated['tratamiento']['tipoTto'],
+          'frecuencia' => $validated['tratamiento']['frecuencia'],
+          'cantidad_diaria' => $validated['tratamiento']['cantidadDiaria'],
+        ]);
+
+        //save the treatment in the BD
+        if ($tratamiento) {
+          $tratamiento->save();
+          return response()->json([
             'message' => 'Tratamiento creado correctamente',
-            'tratamiento' => [
-                // 'customer_id' => $request->tratamiento->customerID,
-                'medication_id' => $request->tratamiento["medicationID"],
-                'medico_id' => $request->tratamiento["medicoID"],
-                // 'user_id' => $request->tratamiento->user_id,
-                'fecha_inicio' => $request->tratamiento["startDate"],
-                'fecha_fin' => $request->tratamiento["endDate"],
-                'frecuencia' => $request->tratamiento["interval"],
-                'treatment' => $request->tratamiento["treatmentDays"],
-                // 'observaciones' => $request->observaciones
-            ]
-        ], 201);
-        //return $tratamiento;
+            'tratamiento' => $tratamiento
+          ], 201);
+        }else {
+          return response()->json([
+            'message' => 'Error al crear el tratamiento',
+            'tratamiento' => null
+          ], 500);
+        }
     }
 
     /**
