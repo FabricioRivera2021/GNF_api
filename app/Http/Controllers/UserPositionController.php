@@ -136,6 +136,10 @@ class UserPositionController extends Controller
      */
     public function currentPosition(Request $request){
         $user = $request->user();
+        if (!$user) {
+            return response()->json(['error' => 'Usuario no encontrado'], 404);
+        }
+
         $position_id = $user->positions_id;
 
         $position = UserPosition::where('id', $position_id)->first();
