@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Medications::factory()->create([
             'lote' => '123456',
-            'fecha_vencimiento' => '2023-12-31',
+            'fecha_vencimiento' => '2026-12-31',
             'droga' => 'Paracetamol',
             'droga_concentracion' => '500mg',
             'nombre_comercial' => 'Dolex',
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Medications::factory()->create([
             'lote' => '654321',
-            'fecha_vencimiento' => '2024-01-31',
+            'fecha_vencimiento' => '2027-01-31',
             'droga' => 'Ibuprofeno',
             'droga_concentracion' => '200mg',
             'nombre_comercial' => 'Advil',
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
         ]);
         \App\Models\Medications::factory()->create([
             'lote' => '789012',
-            'fecha_vencimiento' => '2023-11-30',
+            'fecha_vencimiento' => '2028-11-30',
             'droga' => 'Amoxicilina',
             'droga_concentracion' => '500mg',
             'nombre_comercial' => 'Amoxil',
