@@ -16,33 +16,20 @@ class TratamientosFactory extends Factory
      */
     public function definition(): array
     {
-        $isShortTreatment = $this->faker->boolean(50);
-        $totalDays = $isShortTreatment
-            ? $this->faker->numberBetween(1, 30)
-            : $this->faker->randomElement([30, 60, 90, 120, 150, 180]); // 1 to 6 months
-        $startDate = $this->faker->dateTimeBetween('-1 year', 'now');
-        $endDate = (clone $startDate)->modify("+{$totalDays} days");
-        $ttoDiasMes = $this->faker->numberBetween(1, 10);
-        $retirosMes = $this->faker->numberBetween(1, 3);
-        $diasPendientes = $this->faker->numberBetween(0, $totalDays);
-        $retirosPendientes = $this->faker->numberBetween(0, $retirosMes);
-    
         return [
-            'fecha_inicio' => $startDate->format('Y-m-d'),
-            'fecha_fin' => $endDate->format('Y-m-d'),
-            'tto_dias_mes' => $ttoDiasMes,
-            'medicos_id' => $this->faker->numberBetween(1, 10),
-            'medication_id' => $this->faker->numberBetween(1, 3),
+            'fecha_inicio' => $this->faker->date(),
+            'fecha_fin' => $this->faker->date(),
+            'meses_tratamiento' => $this->faker->numberBetween(1, 12),
+            'dias_tratamiento' => $this->faker->optional()->numberBetween(0, 30),
+            'medicos_id' => 1,
+            'medication_id' => 1, //\App\Models\Medications::factory(), --- IGNORE ---
             'customer_id' => 1,
-            'user_id' => $this->faker->numberBetween(1, 5),
-            'activo' => ($endDate > now()) ? true : false,
-            'total_tto_dias' => $totalDays,
-            'total_tto_dias_pendientes' => $diasPendientes,
-            'frecuencia' => $this->faker->randomElement([24, 12, 8, 6, 4, 3]),
-            'cantidad_diaria' => $this->faker->numberBetween(1, 4),
-            'tipo_tto' => $this->faker->randomElement(['crónico']),
-            'retiros_por_mes' => $retirosMes,
-            'retiros_pendientes' => $retirosPendientes,
+            'user_id' => 1,
+            'vigencia' => $this->faker->boolean(),
+            'tipo_tto' => $this->faker->randomElement(['cronico', 'agudo', 'FNR', 'compra_especial']),
+            'dosis' => $this->faker->numberBetween(1, 5),
+            'frecuencia' => $this->faker->numberBetween(1, 4),
+            'observaciones' => $this->faker->optional()->text(200),
         ];
     }
 }

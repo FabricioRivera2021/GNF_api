@@ -13,21 +13,19 @@ return new class extends Migration
     {
         Schema::create('tratamientos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha_inicio');
+            $table->date('fecha_inicio'); 
             $table->date('fecha_fin');
-            $table->unsignedBigInteger('tto_dias_mes');//quizas no sea necesario
+            $table->unsignedBigInteger('meses_tratamiento');//tiempo que dura el tto en meses
+            $table->unsignedBigInteger('dias_tratamiento')->nullable();//tiempo que dura el tto en dias si se da el caso de que sea un mes
             $table->unsignedBigInteger('medicos_id');
             $table->unsignedBigInteger('medication_id');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('user_id');
-            $table->boolean('activo');
-            $table->unsignedBigInteger('total_tto_dias');
-            $table->unsignedBigInteger('total_tto_dias_pendientes');//quizas no sea necesario
-            $table->unsignedBigInteger('retiros_por_mes');
-            $table->unsignedBigInteger('retiros_pendientes');
+            $table->boolean('vigencia');
             $table->enum('tipo_tto', ['cronico', 'agudo', 'FNR', 'compra_especial']);
-            $table->unsignedTinyInteger('frecuencia');
-            $table->unsignedBigInteger('cantidad_diaria');//cantidad de comp/ml/puff/gotas que toma por dia
+            $table->unsignedTinyInteger('dosis');//cantidad por toma
+            $table->unsignedTinyInteger('frecuencia');//veces al dia
+            $table->text('observaciones')->nullable();
             $table->timestamps();
             //references
             $table->foreign('medicos_id')->references('id')->on('medicos')->onDelete('cascade');

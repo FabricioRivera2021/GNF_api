@@ -43,7 +43,7 @@ class EspecialidadFactory extends Factory
                 'Traumatologia',
                 'Urologia'
             ]),
-            'descripcion' => $this->faker->sentence(10),
+            'descripcion' => $this->faker->optional()->text(10),
             'estado' => $this->faker->randomElement(['activo', 'inactivo']),
             'codigo' => $this->faker->unique()->numberBetween(100000, 999999),
         ];
