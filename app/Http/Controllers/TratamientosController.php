@@ -30,6 +30,8 @@ class TratamientosController extends Controller
     public function store(Request $request)
     {
         //stores a new treatment
+
+        //! REVISAR ESTO
         //validate the request
         $validated = $request->validate([
           'tratamiento.startDate' => 'required|date',

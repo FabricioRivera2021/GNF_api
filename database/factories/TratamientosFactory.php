@@ -19,8 +19,8 @@ class TratamientosFactory extends Factory
         return [
             'fecha_inicio' => $this->faker->date(),
             'fecha_fin' => $this->faker->date(),
-            'meses_tratamiento' => $this->faker->numberBetween(1, 12),
-            'dias_tratamiento' => $this->faker->optional()->numberBetween(0, 30),
+            'meses_tratamiento' => $this->faker->numberBetween(1, 6),
+            'dias_tratamiento' => $this->faker->optional()->numberBetween(1, 31),
             'medicos_id' => 1,
             'medication_id' => 1, //\App\Models\Medications::factory(), --- IGNORE ---
             'customer_id' => 1,
@@ -28,8 +28,8 @@ class TratamientosFactory extends Factory
             'vigencia' => $this->faker->boolean(),
             'tipo_tto' => $this->faker->randomElement(['cronico', 'agudo', 'FNR', 'compra_especial']),
             'dosis' => $this->faker->numberBetween(1, 5),
-            'frecuencia' => $this->faker->numberBetween(1, 4),
-            'observaciones' => $this->faker->optional()->text(200),
+            'frecuencia' => $this->faker->randomElement([3, 6, 8, 12, 24]),
+            'observaciones' => $this->faker->optional()->text(50),
         ];
     }
 }
