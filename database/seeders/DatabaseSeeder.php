@@ -148,5 +148,20 @@ class DatabaseSeeder extends Seeder
             'user_id' => 1,
             'fecha_retiro' => '2023-02-01'
         ]);
+
+        //esto es para que no se rompa al buscar los nombres de los grupos terapeuticos y no encontrar nada
+        //grupos terapeuticos y relacion con medicaciones
+        $med1 = \App\Models\Medications::find(1); //Paracetamol
+        $med1->grupos_terapeuticos()->attach(1); // Aines
+        $med1->grupos_terapeuticos()->attach(2); // Analgesicos
+        $med2 = \App\Models\Medications::find(2); //ibpurofeno
+        $med2->grupos_terapeuticos()->attach(1); // Aines
+        $med2->grupos_terapeuticos()->attach(2); // Analgesicos
+        $med3 = \App\Models\Medications::find(3); //amoxicilina
+        $med3->grupos_terapeuticos()->attach(3); // Antibioticos
+        //ingresar los med a la bd
+        $med1->save();
+        $med2->save();
+        $med3->save();
     }
 }
