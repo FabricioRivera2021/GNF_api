@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Especialidad;
 use App\Models\User;
 use App\Models\Unidad_medida;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -125,7 +126,9 @@ class DatabaseSeeder extends Seeder
 
         //medicos
         // \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);
-        \App\Models\Medicos::factory()->count(10)->create();
+        \App\Models\Medicos::factory()
+        ->hasAttached(\App\Models\Especialidad::factory(), [], 'especialidades')
+        ->count(10)->create();
         
         //tramtamiento
         \App\Models\Tratamientos::factory(4)->create();
