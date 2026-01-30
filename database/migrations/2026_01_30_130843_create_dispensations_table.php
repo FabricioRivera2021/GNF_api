@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('dispensations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('treatment_id')->nullable();
+            $table->date('creation_date');
+            $table->enum('estado', [
+              'en_ventanilla', 
+              'en_preparacion',
+              'listo_para_retirar',
+              'entregado',
+              'pausado',
+              'cancelado'
+            ]);
+            $table->string('motivo_estado')->nullable();
+            $table->string('estado_actual')->nullable();
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

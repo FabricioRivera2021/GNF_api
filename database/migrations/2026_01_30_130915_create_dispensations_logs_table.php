@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('dispensations_logs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('dispensation_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('estado_anterior');
+            $table->string('nuevo_estado');
+            $table->date('fecha_cambio');
+            $table->enum('motivo_cambio', [
+              'actualizacion_normal_sistema',
+              'pausado_por_usuario',
+              'cancelado_por_usuario',
+              'otro'
+            ]);
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

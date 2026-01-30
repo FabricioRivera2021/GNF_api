@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('droga');
             $table->timestamps();
             
+            
             // $table->string('lote');
             // $table->date('fecha_vencimiento');
             // $table->string('droga_concentracion');
@@ -47,9 +48,11 @@ return new class extends Migration
             // $table->unsignedBigInteger('laboratorio_id');
             // $table->unsignedBigInteger('stock');
 
+
             //references
             // presentacion_id &table->foreign('')
             // grupo_terapeutico_id
+
 
             //old references
             // $table->foreign('unidad_medida_id')->references('id')->on('unidad_medidas')->onDelete('cascade');

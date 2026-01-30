@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('dispensations_items', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('dispensation_id'); //porque es un item de una dispensation
+            $table->unsignedBigInteger('treatment_item_id')->nullable(); //porque puede venir de un tto ya existente
+            $table->unsignedBigInteger('lote_id')->nullable(); //lote del item dispensado
+            $table->unsignedBigInteger('cantidad_entregada'); //cantidad entregada de este item
+            $table->string('unidad');
+            $table->string('origen_tipo')->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('treatments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('customer_id'); //porque es el tto de un cliente
+            $table->unsignedBigInteger('medico_id'); //porque es el tto prescripto por un medico
+            $table->unsignedBigInteger('user_id'); //porque es el tto cargado por un usuario
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
+            $table->enum('estado', ['activo', 'finalizado', 'cancelado']);
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }

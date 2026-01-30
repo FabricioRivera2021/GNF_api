@@ -13,8 +13,14 @@ return new class extends Migration
     {
         Schema::create('lotes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('lote')->unique();
+            $table->date('fecha_vencimiento');
+            $table->unsignedBigInteger('droga_id');
+            $table->unsignedBigInteger('stock')->default(0);
+            $table->enum('estado', ['activo', 'inactivo'])->default('activo');
             $table->timestamps();
-        });
+            $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
+        }); 
     }
 
     /**

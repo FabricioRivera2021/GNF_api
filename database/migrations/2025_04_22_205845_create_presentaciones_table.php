@@ -62,8 +62,8 @@ return new class extends Migration
             $table->unsignedBigInteger('laboratorio_id');
 
             //references
-            $table->foreignId('droga_id')->references('id')->on('drugs')->onDelete('cascade');
-            $table->foreignId('laboratorio_id')->references('id')->on('laboratorios')->onDelete('cascade');
+            $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
+            $table->foreign('laboratorio_id')->references('id')->on('laboratorios')->onDelete('cascade');
             $table->timestamps();
         });
     }

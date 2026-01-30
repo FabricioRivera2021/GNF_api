@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('meses_tratamiento');//tiempo que dura el tto en meses
             $table->unsignedBigInteger('dias_tratamiento')->nullable();//tiempo que dura el tto en dias si se da el caso de que sea un mes
             $table->unsignedBigInteger('medicos_id');
-            $table->unsignedBigInteger('medication_id');
+            $table->unsignedBigInteger('droga_id');
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('user_id');
             $table->boolean('vigencia');
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->timestamps();
             //references
             $table->foreign('medicos_id')->references('id')->on('medicos')->onDelete('cascade');
-            $table->foreign('medication_id')->references('id')->on('medications')->onDelete('cascade');
+            $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
