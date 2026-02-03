@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unidad_medidas', function (Blueprint $table) {
+        Schema::create('unidades', function (Blueprint $table) {
             $table->id();
-            $table->string('unidad_medida')->unique(); //gr, mg, ml, etc.
+            $table->string('codigo'); //mg, g, ml, mcg, ui, %, etc.
+            $table->string('tipo'); //masa, volumen, porcentaje, etc.
+            $table->decimal('factor_base', 10, 6)->nullable(); //1, 1000, 0,0001 , etc.
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unidad_medidas');
+        Schema::dropIfExists('unidades');
     }
 };

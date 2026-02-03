@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Unidad_medida;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class DatabaseSeeder extends Seeder
           GrupoTerapeuticoSeeder::class
         ]);
 
-        \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
+        // \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
 
         \App\Models\Especialidad::factory(10)->create();
 
@@ -69,60 +70,30 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Customers::factory(100)->create();
 
-        \App\Models\Medications::factory()->create([
-            'lote' => '123456',
-            'fecha_vencimiento' => '2026-12-31',
+        DB::table('drugs')->insert([
             'droga' => 'Paracetamol',
-            'droga_concentracion' => '500mg',
-            'nombre_comercial' => 'Dolex',
-            'unidades_caja' => 100,
-            'unidad_medida_id' => 1,
-            'via_administracion_id' => 1,
-            'categoria_id' => 1,
-            'receta' => 'no',
-            'refrigeracion' => 'no',
-            'estado' => 'Activo',
-            'ranurable' => 'No',
-            'presentacion_farmaceutica_id' => 3,
-            'laboratorio_id' => 1,
-            'stock' => 20000
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        \App\Models\Medications::factory()->create([
-            'lote' => '654321',
-            'fecha_vencimiento' => '2027-01-31',
+        DB::table('drugs')->insert([
             'droga' => 'Ibuprofeno',
-            'droga_concentracion' => '200mg',
-            'nombre_comercial' => 'Advil',
-            'unidades_caja' => 30,
-            'unidad_medida_id' => 1,
-            'via_administracion_id' => 1,
-            'categoria_id' => 1,
-            'receta' => 'no',
-            'refrigeracion' => 'no',
-            'estado' => 'Activo',
-            'ranurable' => 'No',
-            'presentacion_farmaceutica_id' => 3,
-            'laboratorio_id' => 1,
-            'stock' => 15000
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        \App\Models\Medications::factory()->create([
-            'lote' => '789012',
-            'fecha_vencimiento' => '2028-11-30',
+        DB::table('drugs')->insert([
             'droga' => 'Amoxicilina',
-            'droga_concentracion' => '500mg',
-            'nombre_comercial' => 'Amoxil',
-            'unidades_caja' => 30,
-            'unidad_medida_id' => 1,
-            'via_administracion_id' => 1,
-            'categoria_id' => 1,
-            'receta' => 'si',
-            'refrigeracion' => 'no',
-            'estado' => 'Activo',
-            'ranurable' => 'No',
-            'presentacion_farmaceutica_id' => 2,
-            'laboratorio_id' => 5,
-            'stock' => 10000
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
+        // \App\Models\Medications::factory()->create([
+        //     'droga' => 'Paracetamol',
+        // ]);
+        // \App\Models\Medications::factory()->create([
+        //     'droga' => 'Ibuprofeno',
+        // ]);
+        // \App\Models\Medications::factory()->create([
+        //     'droga' => 'Amoxicilina',
+        // ]);
 
         //medicos
         // \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);
@@ -131,40 +102,40 @@ class DatabaseSeeder extends Seeder
         ->count(10)->create();
         
         //tramtamiento
-        \App\Models\Tratamientos::factory(4)->create();
+        // \App\Models\Tratamientos::factory(4)->create();
 
-        \App\Models\HistorialRetiros::factory()->create([
-            'tto_id' => 1,
-            'customer_id' => 1,
-            'user_id' => 1,
-            'fecha_retiro' => '2023-01-01'
-        ]);
-        \App\Models\HistorialRetiros::factory()->create([
-            'tto_id' => 2,
-            'customer_id' => 1,
-            'user_id' => 1,
-            'fecha_retiro' => '2023-02-01'
-        ]);
-        \App\Models\HistorialRetiros::factory()->create([
-            'tto_id' => 3,
-            'customer_id' => 1,
-            'user_id' => 1,
-            'fecha_retiro' => '2023-02-01'
-        ]);
+        // \App\Models\HistorialRetiros::factory()->create([
+        //     'tto_id' => 1,
+        //     'customer_id' => 1,
+        //     'user_id' => 1,
+        //     'fecha_retiro' => '2023-01-01'
+        // ]);
+        // \App\Models\HistorialRetiros::factory()->create([
+        //     'tto_id' => 2,
+        //     'customer_id' => 1,
+        //     'user_id' => 1,
+        //     'fecha_retiro' => '2023-02-01'
+        // ]);
+        // \App\Models\HistorialRetiros::factory()->create([
+        //     'tto_id' => 3,
+        //     'customer_id' => 1,
+        //     'user_id' => 1,
+        //     'fecha_retiro' => '2023-02-01'
+        // ]);
 
         //esto es para que no se rompa al buscar los nombres de los grupos terapeuticos y no encontrar nada
         //grupos terapeuticos y relacion con medicaciones
-        $med1 = \App\Models\Medications::find(1); //Paracetamol
-        $med1->grupos_terapeuticos()->attach(1); // Aines
-        $med1->grupos_terapeuticos()->attach(2); // Analgesicos
-        $med2 = \App\Models\Medications::find(2); //ibpurofeno
-        $med2->grupos_terapeuticos()->attach(1); // Aines
-        $med2->grupos_terapeuticos()->attach(2); // Analgesicos
-        $med3 = \App\Models\Medications::find(3); //amoxicilina
-        $med3->grupos_terapeuticos()->attach(3); // Antibioticos
-        //ingresar los med a la bd
-        $med1->save();
-        $med2->save();
-        $med3->save();
+        // $med1 = \App\Models\Medications::find(1); //Paracetamol
+        // $med1->grupos_terapeuticos()->attach(1); // Aines
+        // $med1->grupos_terapeuticos()->attach(2); // Analgesicos
+        // $med2 = \App\Models\Medications::find(2); //ibpurofeno
+        // $med2->grupos_terapeuticos()->attach(1); // Aines
+        // $med2->grupos_terapeuticos()->attach(2); // Analgesicos
+        // $med3 = \App\Models\Medications::find(3); //amoxicilina
+        // $med3->grupos_terapeuticos()->attach(3); // Antibioticos
+        // //ingresar los med a la bd
+        // $med1->save();
+        // $med2->save();
+        // $med3->save();
     }
 }

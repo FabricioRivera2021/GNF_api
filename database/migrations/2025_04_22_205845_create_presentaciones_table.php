@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Tabla que representa las distintas formas farmaceuitcas que pueden exister dentro del sistema
      */
     public function up(): void
     {
         Schema::create('presentaciones', function (Blueprint $table) {
             $table->id();
-            $table->enum('nombre', [
+            $table->enum('presentacion', [
                 'Tableta',
                 'Capsula',
                 'Jarabe',
@@ -30,40 +30,42 @@ return new class extends Migration
                 'Parche',
                 'Otros'
             ]);
-            $table->string('nombre_comercial');
-            $table->decimal('concentracion_valor', 10, 2 );
-            $table->enum('unidad_dispensacion', [
-                'mg',
-                'g',
-                'ml',
-                'mcg',
-                'UI'
-            ]);
-            $table->enum('concentracion_unidad', [
-                'mg/g',
-                'mg/ml',
-                'g/ml',
-                'mcg/ml',
-                'UI/ml'
-            ]);
-            $table->enum('receta', [
-                'Si',
-                'No',
-            ]);
-            $table->enum('refrigeracion', [ 
-                'Si',
-                'No',
-            ]);
-            $table->enum('ranurable', [
-                'Si',
-                'No',
-            ]);
-            $table->unsignedBigInteger('droga_id');
-            $table->unsignedBigInteger('laboratorio_id');
+            // $table->string('nombre_comercial');
+            // $table->decimal('concentracion_valor', 10, 2 );
+            // $table->enum('unidad_base', [
+            //     'mg',
+            //     'g',
+            //     'ml',
+            //     'mcg',
+            //     'UI'
+            // ]);
+            // $table->enum('concentracion', [
+            //     'mg/g',
+            //     'mg/ml',
+            //     'g/ml',
+            //     'mcg/ml',
+            //     'UI/ml'
+            // ]);
+            // $table->enum('receta', [
+            //     'Si',
+            //     'No',
+            // ]);
+            // $table->enum('refrigeracion', [ 
+            //     'Si',
+            //     'No',
+            // ]);
+            // $table->enum('ranurable', [
+            //     'Si',
+            //     'No',
+            // ]);
+
+
+            // $table->unsignedBigInteger('droga_id');
+            // $table->unsignedBigInteger('laboratorio_id');
 
             //references
-            $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
-            $table->foreign('laboratorio_id')->references('id')->on('laboratorios')->onDelete('cascade');
+            // $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
+            // $table->foreign('laboratorio_id')->references('id')->on('laboratorios')->onDelete('cascade');
             $table->timestamps();
         });
     }
