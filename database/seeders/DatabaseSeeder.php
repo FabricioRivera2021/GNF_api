@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Especialidad;
 use App\Models\User;
-use App\Models\Unidad_medida;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +25,19 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
+        //codigo 	tipo 	factor_base
+        DB::table('unidades')->insert(['codigo' => 'mg','tipo' => 'masa','factor_base' => 1,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'ml','tipo' => 'volumen','factor_base' => 1,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'g','tipo' => 'masa','factor_base' => 1000,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'mcg','tipo' => 'masa','factor_base' => 0.001,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => '%','tipo' => 'porcentaje','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'dosis','tipo' => 'dosis','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'ui','tipo' => 'unidad internacional','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 2, 'descripcion' => 'mg/ml', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 3, 'descripcion' => 'mg/g', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 4, 'descripcion' => 'mg/mcg', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 6, 'unidad_denominador' => 2, 'descripcion' => 'dosis/ml', 'created_at' => now(), 'updated_at' => now() ]);
 
         \App\Models\Especialidad::factory(10)->create();
 

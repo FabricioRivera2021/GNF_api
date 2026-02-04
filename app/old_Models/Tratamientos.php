@@ -33,7 +33,7 @@ class Tratamientos extends Model
     //tiene una medicacion
     public function medication(): BelongsTo
     {
-        return $this->belongsTo(Medications::class);
+        return $this->belongsTo(Drugs::class);
     }
 
     //tiene un customer

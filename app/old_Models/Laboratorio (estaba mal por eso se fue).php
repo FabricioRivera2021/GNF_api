@@ -13,6 +13,6 @@ class Laboratorio extends Model
     // un laboratorio tiene muchas medicaciones
     public function medicaciones()
     {
-        return $this->hasMany(Medications::class);
+        return $this->hasMany(Drugs::class);
     }
 }

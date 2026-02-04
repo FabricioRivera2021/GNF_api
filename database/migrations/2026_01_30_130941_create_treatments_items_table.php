@@ -23,7 +23,6 @@ return new class extends Migration
 
             $table->foreign('treatment_id')->references('id')->on('treatments')->onDelete('cascade');
             $table->foreign('medicamento_id')->references('id')->on('medicamentos')->onDelete('cascade');
-            $table->foreign('via_administracion_id')->references('id')->on('via_administracions')->onDelete('cascade');
             $table->foreign('dosis_unidad')->references('id')->on('unidades')->onDelete('cascade');
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
           $table->id();
           $table->unsignedBigInteger('unidad_numerador')->constrained('unidades');
           $table->unsignedBigInteger('unidad_denominador')->nullable()->constrained('unidades');
+          $table->string('descripcion')->nullable();
           $table->timestamps();
 
           $table->unique(['unidad_numerador', 'unidad_denominador'])->name('unidad_concentracion');

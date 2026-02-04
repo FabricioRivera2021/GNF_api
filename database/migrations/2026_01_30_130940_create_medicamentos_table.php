@@ -29,7 +29,7 @@ return new class extends Migration
           $table->foreignId('categoria_id')->constrained();
 
           $table->string('codigo_barra')->nullable();
-          $table->string('registro_msp')->nullable();
+          // $table->string('registro_msp')->nullable();
 
           $table->boolean('activo')->default(true);
 
