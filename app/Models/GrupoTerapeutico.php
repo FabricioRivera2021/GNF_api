@@ -12,6 +12,6 @@ class GrupoTerapeutico extends Model
 
     public function medication()
     {
-        return $this->belongsToMany(Medications::class);
+        return $this->belongsToMany(Drugs::class);
     }
 }

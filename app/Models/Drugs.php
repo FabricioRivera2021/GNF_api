@@ -8,13 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Drugs extends Model
 {
     use HasFactory;
-    //
-
-    //puede estar en muchos tratamientos
-    public function tratamientos()
+    //! esto cambio -> una droga puede estar en muchas medicaciones
+    public function medications()
     {
-        return $this->hasMany(Tratamientos::class);
+        return $this->hasMany(Medicamento::class);
     }
+
+    /**comienza codigo viejo 
+
+    //puede estar en muchos tratamientos (codigo viejo)
+    // public function tratamientos()
+    // {
+    //     return $this->hasMany(Tratamientos::class);
+    // }
 
     //una medicacion puede estar en muchos registros de retiros
     public function retiros(){
@@ -59,4 +65,6 @@ class Drugs extends Model
     {
         return $this->belongsTo(Laboratorio::class);
     }
+
+    */
 }

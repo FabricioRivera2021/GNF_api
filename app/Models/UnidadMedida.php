@@ -13,7 +13,7 @@ class UnidadMedida extends Model
     //one medication has only one unit of measurment
     public function medications()
     {
-        return $this->hasMany(Medications::class);
+        return $this->hasMany(Medicamento::class);
     }
 
 }
