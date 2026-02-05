@@ -82,6 +82,9 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Customers::factory(100)->create();
 
+        //presentaciones farmaceuticas
+        DB::table('presentaciones')->insert(['nombre' => 'Tabletas', 'created_at' => now(), 'updated_at' => now() ]);
+
         DB::table('drugs')->insert([
             'droga' => 'Paracetamol',
             'created_at' => now(),
@@ -97,15 +100,96 @@ class DatabaseSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        // \App\Models\Medications::factory()->create([
-        //     'droga' => 'Paracetamol',
-        // ]);
-        // \App\Models\Medications::factory()->create([
-        //     'droga' => 'Ibuprofeno',
-        // ]);
-        // \App\Models\Medications::factory()->create([
-        //     'droga' => 'Amoxicilina',
-        // ]);
+        DB::table('drugs')->insert([
+            'droga' => 'Fenilefrina clorhidrato',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('drugs')->insert([
+            'droga' => 'Loratadina',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('drugs')->insert([
+            'droga' => 'Cafeina',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        \App\Models\Medicamento::factory()->create([
+          /*
+          $table->id();
+
+          $table->string('nombre_comercial');
+
+          $table->unsignedBigInteger('droga_id');
+          $table->unsignedBigInteger('laboratorio_id');
+          $table->unsignedBigInteger('presentacion_id');
+          $table->unsignedBigInteger('concentracion_id');
+          $table->unsignedBigInteger('via_administracion_id');
+
+          $table->boolean('requiere_receta')->default(false);
+          $table->boolean('requiere_refrigeracion')->default(false);
+          $table->boolean('es_ranurable')->default(false);
+
+          $table->foreignId('categoria_id')->constrained();
+
+          $table->string('codigo_barra')->nullable();
+          // $table->string('registro_msp')->nullable();
+
+          $table->boolean('activo')->default(true);
+
+          $table->timestamps();
+           */
+
+          // 'medicamento_droga_id' => 1, // Paracetamol
+          'nombre_comercial' => 'Bio Grip L Descongestivo',
+          'laboratorio_id' => 1, // Laboratorio 1
+          'presentacion_id' => 1, // Tabletas
+          // 'concentracion_id' => 2, // mg/g la concentracion ahora se maneja en la tabla medicamento_drogas
+          'via_administracion_id' => 1, // Oral
+          'requiere_receta' => false,
+          'requiere_refrigeracion' => false,
+          'es_ranurable' => false,
+          'categoria_id' => 1, // Categoria 1
+          'codigo_barra' => '1234567890123',
+          'activo' => true,
+        ]);
+
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 1, // Paracetamol
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 500, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 4, // Fenilefrina clorhidrato
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 8, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 5, // Loratadina
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 3, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 6, // Cafeina
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 30, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+
 
         //medicos
         // \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);

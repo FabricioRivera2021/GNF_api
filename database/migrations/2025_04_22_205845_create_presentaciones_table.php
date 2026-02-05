@@ -13,23 +13,7 @@ return new class extends Migration
     {
         Schema::create('presentaciones', function (Blueprint $table) {
             $table->id();
-            $table->enum('presentacion', [
-                'Tableta',
-                'Capsula',
-                'Jarabe',
-                'Inyectable',
-                'Pomada',
-                'Crema',
-                'Suspension',
-                'Solucion',
-                'Gotas',
-                'Spray',
-                'Polvo',
-                'Granulado',
-                'Supositorio',
-                'Parche',
-                'Otros'
-            ]);
+            $table->string('nombre'); // Tabletas, Jarabe, Inyectable, etc.
             // $table->string('nombre_comercial');
             // $table->decimal('concentracion_valor', 10, 2 );
             // $table->enum('unidad_base', [

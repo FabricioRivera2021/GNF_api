@@ -16,10 +16,10 @@ return new class extends Migration
 
           $table->string('nombre_comercial');
 
-          $table->unsignedBigInteger('droga_id');
+          // $table->unsignedBigInteger('droga_id');
           $table->unsignedBigInteger('laboratorio_id');
           $table->unsignedBigInteger('presentacion_id');
-          $table->unsignedBigInteger('concentracion_id');
+          // $table->unsignedBigInteger('concentracion_id');
           $table->unsignedBigInteger('via_administracion_id');
 
           $table->boolean('requiere_receta')->default(false);
@@ -36,10 +36,10 @@ return new class extends Migration
           $table->timestamps();
 
           //references
-          $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
+          // $table->foreign('droga_id')->references('id')->on('drugs')->onDelete('cascade');
           $table->foreign('laboratorio_id')->references('id')->on('laboratorios')->onDelete('cascade');
           $table->foreign('presentacion_id')->references('id')->on('presentaciones')->onDelete('cascade');
-          $table->foreign('concentracion_id')->references('id')->on('concentraciones')->onDelete('cascade');
+          // $table->foreign('concentracion_id')->references('id')->on('concentraciones')->onDelete('cascade');
           $table->foreign('via_administracion_id')->references('id')->on('via_administracions')->onDelete('cascade');
       });
     }
