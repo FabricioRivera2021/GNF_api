@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medications;
+use App\Models\Drugs;
 use Illuminate\Http\Request;
 
-class MedicationsController extends Controller
+class DrugsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,8 @@ class MedicationsController extends Controller
     public function index()
     {
         //devuelve toda la medicacion ordenada por droga
-        return Medications::with('presentacion_farmaceutica', 'categoria', 'unidad_medida', 'grupos_terapeuticos', 'via_administracion', 'laboratorio')->orderBy('droga', 'ASC')->get();
+        // esto se va a romper con la modificacion de las tablas
+        return Drugs::with('presentacion_farmaceutica', 'categoria', 'unidad_medida', 'grupos_terapeuticos', 'via_administracion', 'laboratorio')->orderBy('droga', 'ASC')->get();
     }
 
     /**
@@ -35,7 +36,7 @@ class MedicationsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Medications $medications)
+    public function show(Drugs $drugs)
     {
         //
     }
@@ -43,7 +44,7 @@ class MedicationsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Medications $medications)
+    public function edit(Drugs $drugs)
     {
         //
     }
@@ -51,7 +52,7 @@ class MedicationsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Medications $medications)
+    public function update(Request $request, Drugs $drugs)
     {
         //
     }
@@ -59,7 +60,7 @@ class MedicationsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Medications $medications)
+    public function destroy(Drugs $medications)
     {
         //
     }

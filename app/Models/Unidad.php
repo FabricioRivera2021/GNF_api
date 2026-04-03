@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class UnidadMedida extends Model
+class Unidad extends Model
 {
     /** @use HasFactory<\Database\Factories\UnidadMedidaFactory> */
     use HasFactory;
@@ -13,7 +13,7 @@ class UnidadMedida extends Model
     //one medication has only one unit of measurment
     public function medications()
     {
-        return $this->hasMany(Medications::class);
+        return $this->hasMany(Medicamento::class);
     }
 
 }

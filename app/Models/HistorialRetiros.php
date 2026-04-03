@@ -24,8 +24,8 @@ class HistorialRetiros extends Model
         return $this->belongsTo(User::class);
     }
     //tiene una medicacion
-    public function medication(): BelongsTo
+    public function drugs(): BelongsTo
     {
-        return $this->belongsTo(Medications::class);
+        return $this->belongsTo(Drugs::class);
     }
 }

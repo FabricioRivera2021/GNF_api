@@ -13,6 +13,6 @@ class PresentacionFarmaceutica extends Model
     //una presentacion farmaceutica puede estar en muchas medicaciones
     public function medications()
     {
-        return $this->hasMany(Medications::class);
+        return $this->hasMany(Medicamento::class);
     }
 }

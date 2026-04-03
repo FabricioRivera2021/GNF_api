@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Unidad_medida;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Unidad_medida>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MedicamentoDroga>
  */
-class UnidadMedidaFactory extends Factory
+class MedicamentoDrogaFactory extends Factory
 {
     /**
      * Define the model's default state.

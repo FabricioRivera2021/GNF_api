@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Especialidad;
 use App\Models\User;
-use App\Models\Unidad_medida;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,20 @@ class DatabaseSeeder extends Seeder
           GrupoTerapeuticoSeeder::class
         ]);
 
-        \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
+        // \App\Models\UnidadMedida::factory()->create(['unidad_medida' => 'mg']);
+        //codigo 	tipo 	factor_base
+        DB::table('unidades')->insert(['codigo' => 'mg','tipo' => 'masa','factor_base' => 1,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'ml','tipo' => 'volumen','factor_base' => 1,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'g','tipo' => 'masa','factor_base' => 1000,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'mcg','tipo' => 'masa','factor_base' => 0.001,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => '%','tipo' => 'porcentaje','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'dosis','tipo' => 'dosis','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'ui','tipo' => 'unidad internacional','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 2, 'descripcion' => 'mg/ml', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 3, 'descripcion' => 'mg/g', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 4, 'descripcion' => 'mg/mcg', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('Concentraciones')->insert(['unidad_numerador' => 6, 'unidad_denominador' => 2, 'descripcion' => 'dosis/ml', 'created_at' => now(), 'updated_at' => now() ]);
 
         \App\Models\Especialidad::factory(10)->create();
 
@@ -68,100 +82,156 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Customers::factory(100)->create();
 
-        \App\Models\Medications::factory()->create([
-            'lote' => '123456',
-            'fecha_vencimiento' => '2026-12-31',
+        //presentaciones farmaceuticas
+        DB::table('presentaciones')->insert(['nombre' => 'Tabletas', 'created_at' => now(), 'updated_at' => now() ]);
+
+        DB::table('drugs')->insert([
             'droga' => 'Paracetamol',
-            'droga_concentracion' => '500mg',
-            'nombre_comercial' => 'Dolex',
-            'unidades_caja' => 100,
-            'unidad_medida_id' => 1,
-            'via_administracion_id' => 1,
-            'categoria_id' => 1,
-            'receta' => 'no',
-            'refrigeracion' => 'no',
-            'estado' => 'Activo',
-            'ranurable' => 'No',
-            'presentacion_farmaceutica_id' => 3,
-            'laboratorio_id' => 1,
-            'stock' => 20000
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        \App\Models\Medications::factory()->create([
-            'lote' => '654321',
-            'fecha_vencimiento' => '2027-01-31',
+        DB::table('drugs')->insert([
             'droga' => 'Ibuprofeno',
-            'droga_concentracion' => '200mg',
-            'nombre_comercial' => 'Advil',
-            'unidades_caja' => 30,
-            'unidad_medida_id' => 1,
-            'via_administracion_id' => 1,
-            'categoria_id' => 1,
-            'receta' => 'no',
-            'refrigeracion' => 'no',
-            'estado' => 'Activo',
-            'ranurable' => 'No',
-            'presentacion_farmaceutica_id' => 3,
-            'laboratorio_id' => 1,
-            'stock' => 15000
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        \App\Models\Medications::factory()->create([
-            'lote' => '789012',
-            'fecha_vencimiento' => '2028-11-30',
+        DB::table('drugs')->insert([
             'droga' => 'Amoxicilina',
-            'droga_concentracion' => '500mg',
-            'nombre_comercial' => 'Amoxil',
-            'unidades_caja' => 30,
-            'unidad_medida_id' => 1,
-            'via_administracion_id' => 1,
-            'categoria_id' => 1,
-            'receta' => 'si',
-            'refrigeracion' => 'no',
-            'estado' => 'Activo',
-            'ranurable' => 'No',
-            'presentacion_farmaceutica_id' => 2,
-            'laboratorio_id' => 5,
-            'stock' => 10000
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
+        DB::table('drugs')->insert([
+            'droga' => 'Fenilefrina clorhidrato',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('drugs')->insert([
+            'droga' => 'Loratadina',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('drugs')->insert([
+            'droga' => 'Cafeina',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        \App\Models\Medicamento::factory()->create([
+          /*
+          $table->id();
+
+          $table->string('nombre_comercial');
+
+          $table->unsignedBigInteger('droga_id');
+          $table->unsignedBigInteger('laboratorio_id');
+          $table->unsignedBigInteger('presentacion_id');
+          $table->unsignedBigInteger('concentracion_id');
+          $table->unsignedBigInteger('via_administracion_id');
+
+          $table->boolean('requiere_receta')->default(false);
+          $table->boolean('requiere_refrigeracion')->default(false);
+          $table->boolean('es_ranurable')->default(false);
+
+          $table->foreignId('categoria_id')->constrained();
+
+          $table->string('codigo_barra')->nullable();
+          // $table->string('registro_msp')->nullable();
+
+          $table->boolean('activo')->default(true);
+
+          $table->timestamps();
+           */
+
+          // 'medicamento_droga_id' => 1, // Paracetamol
+          'nombre_comercial' => 'Bio Grip L Descongestivo',
+          'laboratorio_id' => 1, // Laboratorio 1
+          'presentacion_id' => 1, // Tabletas
+          // 'concentracion_id' => 2, // mg/g la concentracion ahora se maneja en la tabla medicamento_drogas
+          'via_administracion_id' => 1, // Oral
+          'requiere_receta' => false,
+          'requiere_refrigeracion' => false,
+          'es_ranurable' => false,
+          'categoria_id' => 1, // Categoria 1
+          'codigo_barra' => '1234567890123',
+          'activo' => true,
+        ]);
+
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 1, // Paracetamol
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 500, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 4, // Fenilefrina clorhidrato
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 8, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 5, // Loratadina
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 3, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+        \App\Models\MedicamentoDroga::factory()->create([
+          'medicamento_id' => 1, // Medicamento 1
+          'droga_id' => 6, // Cafeina
+          'concentracion_id' => 2, // mg/g
+          'valor_unidad' => 30, // 500 mg
+          'dosis_unidad' => 1, // mg
+        ]);
+
+
 
         //medicos
         // \App\Models\Medicos::factory()->create(['nombre' => 'Miguel','apellido' => 'Lopez','nro_caja' => 123456,'especialidad' => 'Inmunologia']);
-        \App\Models\Medicos::factory()->count(10)->create();
+        \App\Models\Medicos::factory()
+        ->hasAttached(\App\Models\Especialidad::factory(), [], 'especialidades')
+        ->count(10)->create();
         
         //tramtamiento
-        \App\Models\Tratamientos::factory(4)->create();
+        // \App\Models\Tratamientos::factory(4)->create();
 
-        \App\Models\HistorialRetiros::factory()->create([
-            'tto_id' => 1,
-            'customer_id' => 1,
-            'user_id' => 1,
-            'fecha_retiro' => '2023-01-01'
-        ]);
-        \App\Models\HistorialRetiros::factory()->create([
-            'tto_id' => 2,
-            'customer_id' => 1,
-            'user_id' => 1,
-            'fecha_retiro' => '2023-02-01'
-        ]);
-        \App\Models\HistorialRetiros::factory()->create([
-            'tto_id' => 3,
-            'customer_id' => 1,
-            'user_id' => 1,
-            'fecha_retiro' => '2023-02-01'
-        ]);
+        // \App\Models\HistorialRetiros::factory()->create([
+        //     'tto_id' => 1,
+        //     'customer_id' => 1,
+        //     'user_id' => 1,
+        //     'fecha_retiro' => '2023-01-01'
+        // ]);
+        // \App\Models\HistorialRetiros::factory()->create([
+        //     'tto_id' => 2,
+        //     'customer_id' => 1,
+        //     'user_id' => 1,
+        //     'fecha_retiro' => '2023-02-01'
+        // ]);
+        // \App\Models\HistorialRetiros::factory()->create([
+        //     'tto_id' => 3,
+        //     'customer_id' => 1,
+        //     'user_id' => 1,
+        //     'fecha_retiro' => '2023-02-01'
+        // ]);
 
         //esto es para que no se rompa al buscar los nombres de los grupos terapeuticos y no encontrar nada
         //grupos terapeuticos y relacion con medicaciones
-        $med1 = \App\Models\Medications::find(1); //Paracetamol
-        $med1->grupos_terapeuticos()->attach(1); // Aines
-        $med1->grupos_terapeuticos()->attach(2); // Analgesicos
-        $med2 = \App\Models\Medications::find(2); //ibpurofeno
-        $med2->grupos_terapeuticos()->attach(1); // Aines
-        $med2->grupos_terapeuticos()->attach(2); // Analgesicos
-        $med3 = \App\Models\Medications::find(3); //amoxicilina
-        $med3->grupos_terapeuticos()->attach(3); // Antibioticos
-        //ingresar los med a la bd
-        $med1->save();
-        $med2->save();
-        $med3->save();
+        // $med1 = \App\Models\Medications::find(1); //Paracetamol
+        // $med1->grupos_terapeuticos()->attach(1); // Aines
+        // $med1->grupos_terapeuticos()->attach(2); // Analgesicos
+        // $med2 = \App\Models\Medications::find(2); //ibpurofeno
+        // $med2->grupos_terapeuticos()->attach(1); // Aines
+        // $med2->grupos_terapeuticos()->attach(2); // Analgesicos
+        // $med3 = \App\Models\Medications::find(3); //amoxicilina
+        // $med3->grupos_terapeuticos()->attach(3); // Antibioticos
+        // //ingresar los med a la bd
+        // $med1->save();
+        // $med2->save();
+        // $med3->save();
     }
 }

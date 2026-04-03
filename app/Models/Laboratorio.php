@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Laboratorio extends Model
 {
-    /** @use HasFactory<\Database\Factories\LaboratorioFactory> */
+    /** @use HasFactory<\Database\Factories\LaboratoriosFactory> */
     use HasFactory;
 
-    // un laboratorio tiene muchas medicaciones
-    public function medicaciones()
+    //un laboratorio puede estar en muchas medicaciones
+    public function medications()
     {
-        return $this->hasMany(Medications::class);
+        return $this->hasMany(Medicamento::class);
     }
 }
