@@ -85,36 +85,7 @@ class DatabaseSeeder extends Seeder
         //presentaciones farmaceuticas
         DB::table('presentaciones')->insert(['nombre' => 'Tabletas', 'created_at' => now(), 'updated_at' => now() ]);
 
-        DB::table('drugs')->insert([
-            'droga' => 'Paracetamol',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('drugs')->insert([
-            'droga' => 'Ibuprofeno',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('drugs')->insert([
-            'droga' => 'Amoxicilina',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('drugs')->insert([
-            'droga' => 'Fenilefrina clorhidrato',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('drugs')->insert([
-            'droga' => 'Loratadina',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-        DB::table('drugs')->insert([
-            'droga' => 'Cafeina',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        \App\Models\Drugs::factory(10)->create();
 
         \App\Models\Medicamento::factory()->create([
           /*

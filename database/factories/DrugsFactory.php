@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Medications>
  */
-class MedicationsFactory extends Factory
+class DrugsFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,34 @@ class MedicationsFactory extends Factory
     public function definition(): array
     {
         return [
-            // Medicamentos
+            //el nombre tiene que ser random y unico entre una lista predeterminada
+            //solo tiene nombre, no tiene descripcion ni nada mas
+            'droga' => $this->faker->unique()->randomElement(
+                [
+                    'Aspirina', 
+                    'Ibuprofeno', 
+                    'Paracetamol', 
+                    'Amoxicilina', 
+                    'Metformina',
+                    'Omeprazol',
+                    'Simvastatina',
+                    'Losartan',
+                    'Levotiroxina',
+                    'Atorvastatina',
+                    'Alprazolam',
+                    'Citalopram',
+                    'Clopidogrel',
+                    'Furosemida',
+                    'Gabapentina',
+                    'Hidroclorotiazida',
+                    'Lisinopril',
+                    'Metoprolol',
+                    'Pantoprazol',
+                    'Sertralina',
+                    'Tramadol',
+                    'Warfarina',
+                    'Zolpidem',
+                ]),
         ];
     }
 }

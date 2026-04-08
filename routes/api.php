@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DrugsController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
 use App\Http\Controllers\MedicationsController;
@@ -52,7 +53,7 @@ Route::get("/allFilas", [FilasController::class, "allFilas"]);
 Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAllPosition"]);
 
 //medicamentos
-Route::get("/allMedications", [MedicationsController::class, "index"]);
+Route::get("/allDrugs", [DrugsController::class, "index"]);
 
 //medicos
 Route::get("/allMedicos", [MedicosController::class, "index"]);

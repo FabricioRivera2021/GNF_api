@@ -14,7 +14,7 @@ class DrugsController extends Controller
     {
         //devuelve toda la medicacion ordenada por droga
         // esto se va a romper con la modificacion de las tablas
-        return Drugs::with('presentacion_farmaceutica', 'categoria', 'unidad_medida', 'grupos_terapeuticos', 'via_administracion', 'laboratorio')->orderBy('droga', 'ASC')->get();
+        return Drugs::all();
     }
 
     /**
