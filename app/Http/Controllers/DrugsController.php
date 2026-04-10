@@ -30,7 +30,17 @@ class DrugsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validar que el nombre de la droga no este vacio
+        $request->validate([
+            'droga' => 'required|string|max:255',
+        ]);
+
+        //crear nueva droga
+        $drug = new Drugs();
+        $drug->droga = $request->droga;
+        $drug->save();
+
+        return response()->json(['message' => 'Droga creada exitosamente', 'drug' => $drug], 201);
     }
 
     /**

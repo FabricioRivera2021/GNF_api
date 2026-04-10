@@ -54,6 +54,7 @@ Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAll
 
 //medicamentos
 Route::get("/allDrugs", [DrugsController::class, "index"]);
+Route::post("/createDrug", [DrugsController::class, "store"]);
 
 //medicos
 Route::get("/allMedicos", [MedicosController::class, "index"]);
