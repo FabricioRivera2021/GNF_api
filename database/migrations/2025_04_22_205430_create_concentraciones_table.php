@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Concentraciones', function (Blueprint $table) {
+        Schema::create('concentraciones', function (Blueprint $table) {
           $table->id();
           $table->unsignedBigInteger('unidad_numerador')->constrained('unidades');
           $table->unsignedBigInteger('unidad_denominador')->nullable()->constrained('unidades');

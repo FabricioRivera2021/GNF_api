@@ -34,10 +34,10 @@ class DatabaseSeeder extends Seeder
         DB::table('unidades')->insert(['codigo' => 'dosis','tipo' => 'dosis','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
         DB::table('unidades')->insert(['codigo' => 'ui','tipo' => 'unidad internacional','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
 
-        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 2, 'descripcion' => 'mg/ml', 'created_at' => now(), 'updated_at' => now() ]);
-        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 3, 'descripcion' => 'mg/g', 'created_at' => now(), 'updated_at' => now() ]);
-        DB::table('Concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 4, 'descripcion' => 'mg/mcg', 'created_at' => now(), 'updated_at' => now() ]);
-        DB::table('Concentraciones')->insert(['unidad_numerador' => 6, 'unidad_denominador' => 2, 'descripcion' => 'dosis/ml', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 2, 'descripcion' => 'mg/ml', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 3, 'descripcion' => 'mg/g', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 4, 'descripcion' => 'mg/mcg', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('concentraciones')->insert(['unidad_numerador' => 6, 'unidad_denominador' => 2, 'descripcion' => 'dosis/ml', 'created_at' => now(), 'updated_at' => now() ]);
 
         \App\Models\Especialidad::factory(10)->create();
 

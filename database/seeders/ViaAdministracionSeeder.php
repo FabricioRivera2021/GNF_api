@@ -27,7 +27,7 @@ class ViaAdministracionSeeder extends Seeder
         ];
 
         foreach ($vias as $via) {
-            DB::table('Via_Administracions')->insert([
+            DB::table('via_administracions')->insert([
                 'nombre' => $via,
                 'created_at' => now(),
                 'updated_at' => now(),
