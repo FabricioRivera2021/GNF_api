@@ -9,4 +9,16 @@ class MedicamentoDroga extends Model
 {
     /** @use HasFactory<\Database\Factories\MedicamentoDrogaFactory> */
     use HasFactory;
+
+    protected $table = 'medicamento_drogas';
+
+    public function medicamento()
+    {
+        return $this->belongsTo(Medicamento::class);
+    }
+
+    public function droga()
+    {
+        return $this->belongsTo(Drugs::class);
+    }
 }

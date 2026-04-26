@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Customers::factory(100)->create();
 
         //presentaciones farmaceuticas
-        DB::table('presentaciones')->insert(['nombre' => 'Tabletas', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('presentaciones')->create(['nombre' => 'Tabletas', 'created_at' => now(), 'updated_at' => now() ]);
 
         \App\Models\Drugs::factory(10)->create();
 

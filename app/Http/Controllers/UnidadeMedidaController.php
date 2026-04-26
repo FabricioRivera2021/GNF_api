@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Laboratorio;
+use App\Models\Unidad;
 use Illuminate\Http\Request;
 
-class LaboratorioController extends Controller
+class UnidadeMedidaController extends Controller
 {
     public function index() {
-        return Laboratorio::all();
+        return Unidad::all();
     }
 }

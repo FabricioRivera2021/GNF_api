@@ -67,4 +67,13 @@ class Drugs extends Model
     }
 
     */
+    public function medicamentos()
+    {
+        return $this->belongsToMany(
+            Medicamento::class,
+            'medicamento_drogas',
+            'droga_id',
+            'medicamento_id'
+        );
+    }
 }

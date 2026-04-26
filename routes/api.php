@@ -3,10 +3,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DrugsController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
+use App\Http\Controllers\LaboratorioController;
 use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\NumerosController;
+use App\Http\Controllers\PresentacionFarmaceuticaController;
 use App\Http\Controllers\TratamientosController;
+use App\Http\Controllers\UnidadeMedidaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserPositionController;
 use Illuminate\Http\Request;
@@ -65,3 +68,8 @@ Route::post("/createTreatment", [TratamientosController::class, "store"]);
 
 //historico de retiros
 Route::get("/allRetiros", [NumerosController::class, "allRetiros"]);
+
+//formulario de medicacion
+Route::get("/allLab", [LaboratorioController::class, "index"]);
+Route::get("/allUnidades", [UnidadeMedidaController::class, "index"]);
+Route::get("/allPresentaciones", [PresentacionFarmaceuticaController::class, "index"]);

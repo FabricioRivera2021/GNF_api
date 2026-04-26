@@ -48,13 +48,26 @@ class Medicamento extends Model
     // una medicacion tiene una presentacion farmaceutica
     public function presentacion_farmaceutica()
     {
-        return $this->belongsTo(PresentacionFarmaceutica::class);
+        return $this->belongsTo(
+            PresentacionFarmaceutica::class,
+            'presentacion_id'    
+        );
     }
 
     // una medicacion tiene un laboratorio
     public function laboratorio()
     {
         return $this->belongsTo(Laboratorio::class);
+    }
+
+    public function drogas()
+    {
+        return $this->belongsToMany(
+            Drugs::class,          // modelo relacionado
+            'medicamento_drogas',  // tabla pivote
+            'medicamento_id',      // FK de este modelo en la pivote
+            'droga_id'             // FK del otro modelo
+        );
     }
 
 }
