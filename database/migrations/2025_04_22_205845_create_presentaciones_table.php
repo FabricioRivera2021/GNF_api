@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('presentaciones', function (Blueprint $table) {
             $table->id();
             $table->string('nombre'); // Tabletas, Jarabe, Inyectable, etc.
+            $table->boolean('unidad_indivisible');
             // $table->string('nombre_comercial');
             // $table->decimal('concentracion_valor', 10, 2 );
             // $table->enum('unidad_base', [

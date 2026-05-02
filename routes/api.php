@@ -4,6 +4,7 @@ use App\Http\Controllers\DrugsController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\FilasController;
 use App\Http\Controllers\LaboratorioController;
+use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\MedicationsController;
 use App\Http\Controllers\MedicosController;
 use App\Http\Controllers\NumerosController;
@@ -58,6 +59,7 @@ Route::post("/clearAllPositions", [UserPositionController::class, "forceClearAll
 //medicamentos
 Route::get("/allDrugs", [DrugsController::class, "index"]);
 Route::post("/createDrug", [DrugsController::class, "store"]);
+Route::post("/newMedication", [MedicamentoController::class, "store"]);
 
 //medicos
 Route::get("/allMedicos", [MedicosController::class, "index"]);
@@ -73,3 +75,6 @@ Route::get("/allRetiros", [NumerosController::class, "allRetiros"]);
 Route::get("/allLab", [LaboratorioController::class, "index"]);
 Route::get("/allUnidades", [UnidadeMedidaController::class, "index"]);
 Route::get("/allPresentaciones", [PresentacionFarmaceuticaController::class, "index"]);
+
+//traer las medicaciones
+Route::get("/allMedications", [MedicamentoController::class, "index"]);

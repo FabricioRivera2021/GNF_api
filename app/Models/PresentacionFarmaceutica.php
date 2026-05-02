@@ -20,4 +20,15 @@ class PresentacionFarmaceutica extends Model
             'presentacion_id'
         );
     }
+
+    //una presentacion puede tener muchas unidades base de medida
+    public function unidades()
+    {
+        return $this->belongsToMany(
+            Unidad::class,
+            'presentacion_unidad',
+            'presentacion_id',
+            'unidad_id'
+        );
+    }
 }

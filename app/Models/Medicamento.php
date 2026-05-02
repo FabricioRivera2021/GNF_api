@@ -10,6 +10,22 @@ class Medicamento extends Model
     /** @use HasFactory<\Database\Factories\MedicamentoFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'nombre_comercial', 
+        'laboratorio_id',
+        'presentacion_id',
+        'via_administracion_id',
+        'unidad_base_id',
+        'require_receta', 
+        'require_refrigeracio', 
+        'es_ranurable', 
+        'categoria_id',
+        'codigo_barra',
+        'activo', 
+        'contenido',
+        'contenido_por_unidad' ,
+        'tiene_contenido_por_unidad' , 
+    ];
 
     //una medicacion puede estar en muchos registros de retiros
     public function retiros(){
@@ -58,6 +74,15 @@ class Medicamento extends Model
     public function laboratorio()
     {
         return $this->belongsTo(Laboratorio::class);
+    }
+    
+    // una medicacion tiene una unidad base
+    public function unidad()
+    {
+        return $this->belongsTo(
+            Unidad::class,
+            'unidad_base_id'
+        );
     }
 
     public function drogas()

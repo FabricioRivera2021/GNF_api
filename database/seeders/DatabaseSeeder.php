@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         DB::table('unidades')->insert(['codigo' => '%','tipo' => 'porcentaje','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
         DB::table('unidades')->insert(['codigo' => 'dosis','tipo' => 'dosis','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
         DB::table('unidades')->insert(['codigo' => 'ui','tipo' => 'unidad internacional','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
+        DB::table('unidades')->insert(['codigo' => 'unidad','tipo' => 'unidad individual','factor_base' => null,'created_at' => now(),'updated_at' => now()]);
 
         DB::table('concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 2, 'descripcion' => 'mg/ml', 'created_at' => now(), 'updated_at' => now() ]);
         DB::table('concentraciones')->insert(['unidad_numerador' => 1, 'unidad_denominador' => 3, 'descripcion' => 'mg/g', 'created_at' => now(), 'updated_at' => now() ]);
@@ -83,7 +84,19 @@ class DatabaseSeeder extends Seeder
         \App\Models\Customers::factory(100)->create();
 
         //presentaciones farmaceuticas
-        DB::table('presentaciones')->create(['nombre' => 'Tabletas', 'created_at' => now(), 'updated_at' => now() ]);
+        DB::table('presentaciones')->insert([
+            'nombre' => 'Tabletas', 
+            'unidad_indivisible' => true,
+            'created_at' => now(), 
+            'updated_at' => now()
+        ]);
+
+        DB::table('presentaciones')->insert([
+            'nombre' => 'Solucion', 
+            'unidad_indivisible' => false,
+            'created_at' => now(), 
+            'updated_at' => now()
+        ]);
 
         \App\Models\Drugs::factory(10)->create();
 
@@ -119,12 +132,35 @@ class DatabaseSeeder extends Seeder
           'presentacion_id' => 1, // Tabletas
           // 'concentracion_id' => 2, // mg/g la concentracion ahora se maneja en la tabla medicamento_drogas
           'via_administracion_id' => 1, // Oral
+          'unidad_base_id' => 1, // MG
           'requiere_receta' => false,
           'requiere_refrigeracion' => false,
           'es_ranurable' => false,
           'categoria_id' => 1, // Categoria 1
           'codigo_barra' => '1234567890123',
           'activo' => true,
+          'contenido' => 20,
+          'contenido_por_unidad' => 12.5,
+          'tiene_contenido_x_unidad' => true
+        ]);
+
+        \App\Models\Medicamento::factory()->create([
+          // 'medicamento_droga_id' => 1, // Paracetamol
+          'nombre_comercial' => 'Amoxidal Plus',
+          'laboratorio_id' => 1, // Laboratorio 1
+          'presentacion_id' => 2, // Solucion
+          // 'concentracion_id' => 2, // mg/g la concentracion ahora se maneja en la tabla medicamento_drogas
+          'via_administracion_id' => 1, // Oral
+          'unidad_base_id' => 2, // ML
+          'requiere_receta' => false,
+          'requiere_refrigeracion' => false,
+          'es_ranurable' => false,
+          'categoria_id' => 1, // Categoria 1
+          'codigo_barra' => '1234567890123',
+          'activo' => true,          
+          'contenido' => 500,
+          'contenido_por_unidad' => null,
+          'tiene_contenido_x_unidad' => false
         ]);
 
 

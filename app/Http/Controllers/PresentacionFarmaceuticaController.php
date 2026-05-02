@@ -9,6 +9,6 @@ class PresentacionFarmaceuticaController extends Controller
 {
     public function index()
     {
-        return PresentacionFarmaceutica::all();
+        return PresentacionFarmaceutica::with('unidades')->get();
     }
 }
