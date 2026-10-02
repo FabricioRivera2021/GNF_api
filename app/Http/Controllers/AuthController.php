@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\PersonalAccessToken;
+
+// use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -31,42 +33,35 @@ class AuthController extends Controller
             'email' => ['required', 'email', 'exists:users'],
             'password' => ['required', 'min:6'],
         ]);
-
+        if (!Auth::attempt(['email' => $data['email'], 'password' => $data['password']]))
+          {     
+            return response()->json(['error' => 'Unauthorized'], 401);
+          }
         $user = User::where('email', $data['email'])->first();
 
-        if (Auth::attempt($data) && $user) {
-            $request->session()->regenerate();
-            // return redirect()->intended('dashboard');
-            $token = $user->createToken('auth_token')->plainTextToken;
+        // Reseteo la posición del usuario a sin asignar
+        $user->positions_id = 1;
+        $user->save();
 
-            //reseteo la posicion del usuario a sin asignar por las dudas
-            $user->positions_id = 1;
-            $user->save();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-            return [
-                'user' => $user,
-                'token' => $token,
-                'message' => 'Login successful'
-            ];
-        }
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json([
+            'user' => $user,
+            'token' => $token,
+            'message' => 'Login successful'
+        ]);
     }
     
     public function logout(Request $request) {
-        /** @var User $user */
-        $user = Auth::user();
-        if(!$user){
-            return response([
-                'sccess' => false
-            ], 404);
+        $token = $request->user()->currentAccessToken();
+
+        if ($token instanceof PersonalAccessToken) {
+            $token->delete();
         }
 
-        $userOk = User::where('id', $user->id)->get();
-        // Revoke the token that was used to authenticate the current request...
-        // $userOk->currentAccessToken()->delete();
-
-        return [
+        return response()->json([
+            'success' => true,
             'message' => 'Logout successful'
-        ];
+        ]);
     }
 }
